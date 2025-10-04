@@ -1,0 +1,110 @@
+$date
+	Thu Oct 02 13:02:23 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb $end
+$var wire 1 ! t_o_ack $end
+$var wire 32 " t_o_instr [31:0] $end
+$var wire 1 # t_o_last $end
+$var integer 32 $ i [31:0] $end
+$var reg 1 % t_clk $end
+$var reg 1 & t_i_syn $end
+$var reg 1 ' t_rst $end
+$scope module t $end
+$var wire 1 ( t_clk $end
+$var wire 1 ) t_i_syn $end
+$var wire 1 * t_rst $end
+$var integer 32 + counter [31:0] $end
+$var reg 1 , t_o_ack $end
+$var reg 32 - t_o_instr [31:0] $end
+$var reg 1 . t_o_last $end
+$upscope $end
+$scope task display $end
+$var integer 32 / counter [31:0] $end
+$upscope $end
+$scope task reset $end
+$var integer 32 0 counter [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b10 0
+bx /
+0.
+b0 -
+0,
+b0 +
+0*
+0)
+0(
+0'
+0&
+0%
+b0 $
+0#
+b0 "
+0!
+$end
+#5
+1%
+1(
+#10
+0%
+0(
+#15
+1'
+1*
+1%
+1(
+#20
+0%
+0(
+#25
+1,
+1!
+1.
+1#
+b101001000001000000000000 -
+b101001000001000000000000 "
+1&
+1)
+b1 /
+1%
+1(
+#30
+0%
+0(
+#35
+b1 $
+1%
+1(
+#40
+0%
+0(
+#45
+0.
+0#
+0,
+0!
+0&
+0)
+1%
+1(
+#50
+0%
+0(
+#55
+1%
+1(
+#60
+0%
+0(
+#65
+1%
+1(

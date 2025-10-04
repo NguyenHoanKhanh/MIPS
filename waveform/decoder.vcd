@@ -1,0 +1,245 @@
+$date
+	Thu Oct 02 13:36:23 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_decoder $end
+$var wire 5 ! d_o_addr_rd [4:0] $end
+$var wire 5 " d_o_addr_rs [4:0] $end
+$var wire 5 # d_o_addr_rt [4:0] $end
+$var wire 1 $ d_o_ce $end
+$var wire 6 % d_o_funct [5:0] $end
+$var wire 16 & d_o_imm [15:0] $end
+$var wire 6 ' d_o_opcode [5:0] $end
+$var reg 1 ( d_clk $end
+$var reg 1 ) d_i_ce $end
+$var reg 32 * d_i_data_rd [31:0] $end
+$var reg 32 + d_i_instr [31:0] $end
+$var reg 1 , d_rst $end
+$scope module dut $end
+$var wire 1 - d_clk $end
+$var wire 1 . d_i_ce $end
+$var wire 32 / d_i_data_rd [31:0] $end
+$var wire 6 0 d_i_funct [5:0] $end
+$var wire 32 1 d_i_instr [31:0] $end
+$var wire 6 2 d_i_opcode [5:0] $end
+$var wire 1 3 d_rst $end
+$var wire 1 4 funct_add $end
+$var wire 1 5 funct_and $end
+$var wire 1 6 funct_or $end
+$var wire 1 7 funct_sub $end
+$var wire 1 8 funct_xor $end
+$var wire 1 9 op_branch $end
+$var wire 1 : op_itype $end
+$var wire 1 ; op_load $end
+$var wire 1 < op_rtype $end
+$var wire 1 = op_store $end
+$var wire 32 > temp_instr [31:0] $end
+$var reg 5 ? d_o_addr_rd [4:0] $end
+$var reg 5 @ d_o_addr_rs [4:0] $end
+$var reg 5 A d_o_addr_rt [4:0] $end
+$var reg 1 B d_o_ce $end
+$var reg 6 C d_o_funct [5:0] $end
+$var reg 16 D d_o_imm [15:0] $end
+$var reg 6 E d_o_opcode [5:0] $end
+$upscope $end
+$scope task reset $end
+$var integer 32 F cycles [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b10 F
+b0 E
+b0 D
+b0 C
+0B
+b0 A
+b0 @
+b0 ?
+b0 >
+0=
+1<
+0;
+0:
+09
+08
+07
+06
+05
+04
+03
+b0 2
+b0 1
+b0 0
+b0 /
+0.
+0-
+0,
+b0 +
+b0 *
+0)
+0(
+b0 '
+b0 &
+b0 %
+0$
+b0 #
+b0 "
+b0 !
+$end
+#5000
+1(
+1-
+#10000
+0(
+0-
+#15000
+1,
+13
+1(
+1-
+#20000
+0(
+0-
+#25000
+1B
+1$
+1)
+1.
+1(
+1-
+#30000
+0(
+0-
+#35000
+b100000 C
+b100000 %
+b1 ?
+b1 !
+b11 A
+b11 #
+b10 @
+b10 "
+14
+b100000 0
+b10000110000100000100000 +
+b10000110000100000100000 >
+b10000110000100000100000 1
+1(
+1-
+#40000
+0(
+0-
+#45000
+b100001 C
+b100001 %
+b100 ?
+b100 !
+b110 A
+b110 #
+b101 @
+b101 "
+04
+17
+b100001 0
+b101001100010000000100001 +
+b101001100010000000100001 >
+b101001100010000000100001 1
+1(
+1-
+#50000
+0(
+0-
+#55000
+b100010 C
+b100010 %
+b111 ?
+b111 !
+b1001 A
+b1001 #
+b1000 @
+b1000 "
+07
+15
+b100010 0
+b1000010010011100000100010 +
+b1000010010011100000100010 >
+b1000010010011100000100010 1
+1(
+1-
+#60000
+0(
+0-
+#65000
+b100011 C
+b100011 %
+b1010 ?
+b1010 !
+b1100 A
+b1100 #
+b1011 @
+b1011 "
+05
+16
+b100011 0
+b1011011000101000000100011 +
+b1011011000101000000100011 >
+b1011011000101000000100011 1
+1(
+1-
+#70000
+0(
+0-
+#75000
+b100100 C
+b100100 %
+b1101 ?
+b1101 !
+b1111 A
+b1111 #
+b1110 @
+b1110 "
+06
+18
+b100100 0
+b1110011110110100000100100 +
+b1110011110110100000100100 >
+b1110011110110100000100100 1
+1(
+1-
+#80000
+0(
+0-
+#85000
+1(
+1-
+#90000
+0(
+0-
+#95000
+1(
+1-
+#100000
+0(
+0-
+#105000
+1(
+1-
+#110000
+0(
+0-
+#115000
+1(
+1-
+#120000
+0(
+0-
+#125000
+1(
+1-

@@ -1,0 +1,284 @@
+$date
+	Thu Oct 02 16:00:58 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb $end
+$var wire 32 ! es_o_alu_value [31:0] $end
+$var wire 1 " es_o_ce $end
+$var wire 6 # es_o_funct [5:0] $end
+$var wire 6 $ es_o_opcode [5:0] $end
+$var wire 1 % es_o_zero $end
+$var reg 1 & es_clk $end
+$var reg 6 ' es_i_alu_funct [5:0] $end
+$var reg 6 ( es_i_alu_op [5:0] $end
+$var reg 1 ) es_i_alu_src $end
+$var reg 1 * es_i_ce $end
+$var reg 32 + es_i_data_rs [31:0] $end
+$var reg 32 , es_i_data_rt [31:0] $end
+$var reg 16 - es_i_imm [15:0] $end
+$var reg 1 . es_rst $end
+$scope module es $end
+$var wire 32 / alu_value [31:0] $end
+$var wire 1 0 done $end
+$var wire 1 1 es_clk $end
+$var wire 6 2 es_i_alu_funct [5:0] $end
+$var wire 6 3 es_i_alu_op [5:0] $end
+$var wire 1 4 es_i_alu_src $end
+$var wire 1 5 es_i_ce $end
+$var wire 32 6 es_i_data_rs [31:0] $end
+$var wire 32 7 es_i_data_rt [31:0] $end
+$var wire 16 8 es_i_imm [15:0] $end
+$var wire 32 9 es_imm [31:0] $end
+$var wire 32 : es_o_data_2 [31:0] $end
+$var wire 1 ; es_rst $end
+$var reg 4 < alu_control [3:0] $end
+$var reg 32 = es_o_alu_value [31:0] $end
+$var reg 1 > es_o_ce $end
+$var reg 6 ? es_o_funct [5:0] $end
+$var reg 6 @ es_o_opcode [5:0] $end
+$var reg 1 A es_o_zero $end
+$scope module a $end
+$var wire 32 B a_i_data_rs [31:0] $end
+$var wire 32 C a_i_data_rt [31:0] $end
+$var wire 4 D a_i_funct [3:0] $end
+$var wire 1 E funct_add $end
+$var wire 1 F funct_and $end
+$var wire 1 G funct_eq $end
+$var wire 1 H funct_ge $end
+$var wire 1 I funct_geu $end
+$var wire 1 J funct_neq $end
+$var wire 1 K funct_or $end
+$var wire 1 L funct_sll $end
+$var wire 1 M funct_slt $end
+$var wire 1 N funct_sltu $end
+$var wire 1 O funct_sra $end
+$var wire 1 P funct_srl $end
+$var wire 1 Q funct_sub $end
+$var wire 1 R funct_xor $end
+$var reg 32 S alu_value [31:0] $end
+$var reg 1 T done $end
+$upscope $end
+$upscope $end
+$scope task reset $end
+$var integer 32 U counter [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b10 U
+1T
+b0 S
+0R
+0Q
+0P
+0O
+0N
+0M
+0L
+0K
+0J
+0I
+0H
+0G
+0F
+1E
+b0 D
+b0 C
+b0 B
+0A
+b0 @
+b0 ?
+0>
+b0 =
+b0 <
+0;
+b0 :
+b0 9
+b0 8
+b0 7
+b0 6
+05
+04
+b0 3
+b0 2
+01
+10
+b0 /
+0.
+b0 -
+b0 ,
+b0 +
+0*
+0)
+b0 (
+b0 '
+0&
+0%
+b0 $
+b0 #
+0"
+b0 !
+$end
+#5
+1&
+11
+#10
+0&
+01
+#15
+1.
+1;
+1&
+11
+#20
+0&
+01
+#25
+1A
+1%
+1>
+1"
+b100000 ?
+b100000 #
+b100 :
+b100 C
+b1001 S
+b1001 /
+1T
+10
+b100000 '
+b100000 2
+b100 ,
+b100 7
+b101 +
+b101 6
+b101 B
+1*
+15
+1&
+11
+#30
+0&
+01
+#35
+0A
+0%
+b100001 ?
+b100001 #
+b1001 =
+b1001 !
+1T
+10
+b1 S
+b1 /
+b1 <
+b1 D
+0E
+1Q
+1>
+1"
+b100001 '
+b100001 2
+1&
+11
+#40
+0&
+01
+#45
+b100010 ?
+b100010 #
+b1 =
+b1 !
+1T
+10
+b100 S
+b100 /
+1F
+b10 <
+b10 D
+0E
+0Q
+1>
+1"
+b100010 '
+b100010 2
+1&
+11
+#50
+0&
+01
+#55
+b100011 ?
+b100011 #
+b100 =
+b100 !
+1T
+10
+b101 S
+b101 /
+1K
+b11 <
+b11 D
+0E
+0F
+1>
+1"
+b100011 '
+b100011 2
+1&
+11
+#60
+0&
+01
+#65
+b100100 ?
+b100100 #
+b101 =
+b101 !
+1T
+10
+b1 S
+b1 /
+1R
+b100 <
+b100 D
+0E
+0K
+1>
+1"
+b100100 '
+b100100 2
+1&
+11
+#70
+0&
+01
+#75
+b1 =
+b1 !
+1>
+1"
+1&
+11
+#80
+0&
+01
+#85
+1>
+1"
+1&
+11
+#90
+0&
+01
+#95
+1>
+1"
+1&
+11

@@ -1,0 +1,29 @@
+`define OPCODE_WIDTH 6
+`define RTYPE 0
+`define LOAD 1
+`define STORE 2
+`define BRANCH 3
+`define ADDI 4
+`define ADDIU 5
+`define SLTI 6
+`define SLTIU 7
+`define ANDI 8
+`define ORI 9
+`define XORI 10
+
+
+`define FUNCT_WIDTH 6
+`define ADD 6'b100000
+`define SUB 6'b100001
+`define AND 6'b100010
+`define OR 6'b100011
+`define XOR 6'b100100
+`define SLT 6'b100101
+`define SLTU 6'b100110
+`define SLL 6'b100111
+`define SRL 6'b101000
+`define SRA 6'b101001
+`define EQ 6'b101010
+`define NEQ 6'b101011
+`define GE 6'b101100
+`define GEU 6'b101101
