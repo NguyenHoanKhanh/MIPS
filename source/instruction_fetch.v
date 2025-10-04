@@ -14,7 +14,7 @@ module instruction_fetch #(
     output reg [IWIDTH - 1 : 0] f_o_instr;
     output reg [PC_WIDTH - 1 : 0] f_o_pc;
     output reg f_o_ce;
-    output reg f_o_valid;
+    output reg f_o_valid; // Use for handle pipeline
     wire [IWIDTH - 1 : 0] f_i_instr;
     wire f_i_ack;
     wire f_i_last;
