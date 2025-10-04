@@ -2,7 +2,7 @@
 module tb;
     parameter IWIDTH = 32;
     parameter PC_WIDTH = 32;
-    parameter DEPTH = 1;
+    parameter DEPTH = 2;
     
     reg f_clk, f_rst;
     reg f_i_ce;
@@ -49,7 +49,6 @@ module tb;
                 @(posedge f_clk);
                 $display($time, " ", "instr = %h, pc = %d, last = %b, syn = %b, ack = %b, ce = %b", f_o_instr, f_o_pc, f.f_i_last, f.f_o_syn, f.f_i_ack, f_o_ce); 
             end
-            @(posedge f_clk);
             f_i_ce = 1'b0;
         end
     endtask

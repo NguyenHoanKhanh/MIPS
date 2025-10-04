@@ -5,7 +5,7 @@
 module instruction_fetch #(
     parameter PC_WIDTH = 32,
     parameter IWIDTH = 32,
-    parameter DEPTH = 1
+    parameter DEPTH = 5
 )(
     f_clk, f_rst, f_i_ce, f_o_instr, f_o_pc, f_o_ce
 );
@@ -44,15 +44,10 @@ module instruction_fetch #(
                 f_o_syn <= 1'b1;
                 if (f_i_ack) begin
                     f_o_instr <= f_i_instr;
-                    if (f_i_last) begin
-                        f_o_syn <= 1'b0;
-                        f_o_ce <= 1'b1;
-                    end
-                    else begin
-                        f_o_ce <= 1'b0;
-                    end
+                    f_o_pc <= f_o_pc + 4;
+                    f_o_ce <= 1'b1;
                 end
-                f_o_pc <= f_o_pc + 4;
+                f_o_syn <= (f_i_last && f_i_ack) ? 1'b0 : 1'b1;
             end
             else begin
                 f_o_ce <= 1'b0;

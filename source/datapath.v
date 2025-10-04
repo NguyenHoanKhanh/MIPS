@@ -10,7 +10,7 @@ module datapath #(
     parameter IWIDTH = 32,
     parameter AWIDTH = 5,
     parameter PC_WIDTH = 32,
-    parameter DEPTH = 1,
+    parameter DEPTH = 5,
     parameter AWIDTH_MEM = 32,
     parameter IMM_WIDTH = 16
 ) (

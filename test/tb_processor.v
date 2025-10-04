@@ -5,7 +5,7 @@ module tb;
     parameter IWIDTH = 32;
     parameter AWIDTH = 5;
     parameter PC_WIDTH = 32;
-    parameter DEPTH = 1;
+    parameter DEPTH = 5;
     parameter AWIDTH_MEM = 32;
     parameter IMM_WIDTH = 16;
 
@@ -53,7 +53,8 @@ module tb;
         reset(2);
         @(posedge p_clk);
         p_i_ce = 1'b1;
-        #50; $finish;
+        repeat(9) @(posedge p_clk);
+        $finish;
     end
 
     initial begin

@@ -1,7 +1,7 @@
 `include "./source/transmit.v"
 module tb;
     parameter IWIDTH = 32;
-    parameter DEPTH = 1;
+    parameter DEPTH = 2;
     reg t_clk, t_rst;
     reg t_i_syn;
     wire [IWIDTH - 1 : 0] t_o_instr;
@@ -47,15 +47,15 @@ module tb;
                 @(posedge t_clk);
                 $display($time, " ", "instr = %h, last = %b, ack = %b", t_o_instr, t_o_last, t_o_ack);
             end
-            @(posedge t_clk);
             t_i_syn = 1'b0;
+            @(posedge t_clk);
         end
     endtask
 
     initial begin
         reset(2);
         @(posedge t_clk);
-        display(1);
-        #20; $finish;
+        display(2);
+        #40; $finish;
     end
 endmodule

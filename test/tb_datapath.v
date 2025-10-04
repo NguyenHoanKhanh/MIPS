@@ -5,7 +5,7 @@ module tb;
     parameter IWIDTH = 32;
     parameter AWIDTH = 5;      
     parameter PC_WIDTH = 32;
-    parameter DEPTH = 1;
+    parameter DEPTH = 2;
     parameter AWIDTH_MEM = 32;
 
     reg d_clk, d_rst;
@@ -71,7 +71,7 @@ module tb;
         d_i_MemRead  = 1'b0;
         d_i_MemWrite = 1'b0;
         d_i_MemtoReg = 1'b0; // write back từ ALU, không từ mem
-        @(posedge d_clk);
+        repeat(20) @(posedge d_clk);
         #200; $finish;
     end
 

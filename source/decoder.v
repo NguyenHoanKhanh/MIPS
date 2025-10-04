@@ -20,7 +20,7 @@ module decode #(
     output reg d_o_ce;
 
     wire [DWIDTH - 1 : 0] d_i_data_rs, d_i_data_rt;
-    wire [IWIDTH - 1 : 0] temp_instr;
+    reg [IWIDTH - 1 : 0] temp_instr;
 
     wire [`OPCODE_WIDTH - 1 : 0] d_i_opcode = temp_instr[31 : 26];
     wire [`FUNCT_WIDTH - 1 : 0] d_i_funct = temp_instr[5 : 0];
@@ -42,7 +42,6 @@ module decode #(
     wire funct_and = d_i_funct == `AND;
     wire funct_or = d_i_funct == `OR;
     wire funct_xor = d_i_funct == `XOR;
-    assign temp_instr = d_i_instr;
 
     always @(posedge d_clk, negedge d_rst) begin
         if (!d_rst) begin
@@ -56,7 +55,7 @@ module decode #(
         end 
         else begin
             if (d_i_ce) begin
-                d_o_ce <= 1'b1;
+                temp_instr <= d_i_instr;
                 if (op_rtype) begin
                     d_o_addr_rs <= temp_instr[25 : 21];
                     d_o_addr_rt <= temp_instr[20 : 16];
@@ -64,6 +63,7 @@ module decode #(
                     d_o_opcode <= temp_instr[31 : 26];
                     d_o_funct <= temp_instr[5 : 0];
                     d_o_imm <= {DWIDTH{1'b0}};
+                    d_o_ce <= 1'b1;
                 end
                 else if (op_load || op_store) begin
                     d_o_addr_rs <= temp_instr[25 : 21];
@@ -72,6 +72,7 @@ module decode #(
                     d_o_opcode <= temp_instr[31 : 26];
                     d_o_funct <= {`FUNCT_WIDTH{1'b0}};
                     d_o_imm <= temp_instr[15 : 0];
+                    d_o_ce <= 1'b1;
                 end
                 else if (op_addi || op_addiu || op_slti || op_sltiu || op_andi || op_ori || op_xori) begin
                     d_o_addr_rs <= temp_instr[25 : 21];
@@ -80,6 +81,7 @@ module decode #(
                     d_o_opcode <= temp_instr[31 : 26];
                     d_o_funct <= {`FUNCT_WIDTH{1'b0}};
                     d_o_imm <= temp_instr[15 : 0];
+                    d_o_ce <= 1'b1;
                 end
                 else begin
                     d_o_addr_rs <= {AWIDTH{1'b0}};
@@ -88,6 +90,7 @@ module decode #(
                     d_o_opcode <= {`OPCODE_WIDTH{1'b0}};
                     d_o_funct <= {`FUNCT_WIDTH{1'b0}};
                     d_o_imm <= {IMM_WIDTH{1'b0}};
+                    d_o_ce <= 1'b0;
                 end
             end
             else begin

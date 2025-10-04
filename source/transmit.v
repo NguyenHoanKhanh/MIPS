@@ -3,7 +3,7 @@
 
 module transmit #(
     parameter IWIDTH = 32,
-    parameter DEPTH = 1
+    parameter DEPTH = 5
 ) (
     t_clk, t_rst, t_i_syn, t_o_instr, t_o_last, t_o_ack
 );
@@ -29,6 +29,9 @@ module transmit #(
                 t_o_last <= (counter == DEPTH - 1) ? 1'b1 : 1'b0;
                 counter <= (counter < DEPTH - 1) ? counter + 1 : 0;
                 t_o_ack <= 1'b1;
+                if (t_o_last) begin
+                    t_o_ack <= 1'b0;
+                end
             end
             else begin
                 t_o_ack <= 1'b0;
