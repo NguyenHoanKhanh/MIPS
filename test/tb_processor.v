@@ -53,7 +53,7 @@ module tb;
         reset(2);
         @(posedge p_clk);
         p_i_ce = 1'b1;
-        repeat(9) @(posedge p_clk);
+        repeat(13) @(posedge p_clk);
         $finish;
     end
 
