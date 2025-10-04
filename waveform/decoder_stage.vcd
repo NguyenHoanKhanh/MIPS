@@ -1,0 +1,232 @@
+$date
+	Sat Oct 04 14:32:59 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb $end
+$var wire 32 ! ds_o_data_rs [31:0] $end
+$var wire 32 " ds_o_data_rt [31:0] $end
+$var wire 6 # ds_o_funct [5:0] $end
+$var wire 16 $ ds_o_imm [15:0] $end
+$var wire 6 % ds_o_opcode [5:0] $end
+$var reg 1 & ds_clk $end
+$var reg 1 ' ds_i_ce $end
+$var reg 32 ( ds_i_data_rd [31:0] $end
+$var reg 32 ) ds_i_instr [31:0] $end
+$var reg 1 * ds_i_reg_dst $end
+$var reg 1 + ds_i_reg_wr $end
+$var reg 1 , ds_rst $end
+$scope module ds $end
+$var wire 5 - d_o_addr_rs [4:0] $end
+$var wire 5 . d_o_addr_rt [4:0] $end
+$var wire 1 / ds_clk $end
+$var wire 5 0 ds_i_addr_rd [4:0] $end
+$var wire 1 1 ds_i_ce $end
+$var wire 32 2 ds_i_data_rd [31:0] $end
+$var wire 32 3 ds_i_instr [31:0] $end
+$var wire 1 4 ds_i_reg_dst $end
+$var wire 1 5 ds_i_reg_wr $end
+$var wire 1 6 ds_o_ce $end
+$var wire 32 7 ds_o_data_rs [31:0] $end
+$var wire 32 8 ds_o_data_rt [31:0] $end
+$var wire 6 9 ds_o_funct [5:0] $end
+$var wire 16 : ds_o_imm [15:0] $end
+$var wire 6 ; ds_o_opcode [5:0] $end
+$var wire 1 < ds_rst $end
+$var wire 5 = write_register [4:0] $end
+$scope module d $end
+$var wire 1 / d_clk $end
+$var wire 1 1 d_i_ce $end
+$var wire 6 > d_i_funct [5:0] $end
+$var wire 32 ? d_i_instr [31:0] $end
+$var wire 6 @ d_i_opcode [5:0] $end
+$var wire 1 < d_rst $end
+$var wire 1 A funct_add $end
+$var wire 1 B funct_and $end
+$var wire 1 C funct_or $end
+$var wire 1 D funct_sub $end
+$var wire 1 E funct_xor $end
+$var wire 1 F op_addi $end
+$var wire 1 G op_addiu $end
+$var wire 1 H op_andi $end
+$var wire 1 I op_branch $end
+$var wire 1 J op_load $end
+$var wire 1 K op_ori $end
+$var wire 1 L op_rtype $end
+$var wire 1 M op_slti $end
+$var wire 1 N op_sltiu $end
+$var wire 1 O op_store $end
+$var wire 1 P op_xori $end
+$var wire 32 Q temp_instr [31:0] $end
+$var reg 5 R d_o_addr_rd [4:0] $end
+$var reg 5 S d_o_addr_rs [4:0] $end
+$var reg 5 T d_o_addr_rt [4:0] $end
+$var reg 1 U d_o_ce $end
+$var reg 6 V d_o_funct [5:0] $end
+$var reg 16 W d_o_imm [15:0] $end
+$var reg 6 X d_o_opcode [5:0] $end
+$upscope $end
+$scope module r $end
+$var wire 5 Y r_addr_in [4:0] $end
+$var wire 5 Z r_addr_out1 [4:0] $end
+$var wire 5 [ r_addr_out2 [4:0] $end
+$var wire 1 / r_clk $end
+$var wire 32 \ r_data_in [31:0] $end
+$var wire 32 ] r_data_out1 [31:0] $end
+$var wire 32 ^ r_data_out2 [31:0] $end
+$var wire 1 < r_rst $end
+$var wire 1 5 r_wr_en $end
+$var integer 32 _ i [31:0] $end
+$upscope $end
+$upscope $end
+$scope task reset $end
+$var integer 32 ` counter [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b10 `
+b100000 _
+b0 ^
+b0 ]
+bx \
+b0 [
+b0 Z
+b0 Y
+b0 X
+b0 W
+b0 V
+0U
+b0 T
+b0 S
+b0 R
+bx Q
+xP
+xO
+xN
+xM
+xL
+xK
+xJ
+xI
+xH
+xG
+xF
+xE
+xD
+xC
+xB
+xA
+bx @
+bx ?
+bx >
+b0 =
+0<
+b0 ;
+b0 :
+b0 9
+b0 8
+b0 7
+06
+x5
+x4
+bx 3
+bx 2
+01
+b0 0
+0/
+b0 .
+b0 -
+0,
+x+
+x*
+bx )
+bx (
+0'
+0&
+b0 %
+b0 $
+b0 #
+b0 "
+b0 !
+$end
+#5
+b100000 _
+1&
+1/
+#10
+0&
+0/
+#15
+1U
+16
+1'
+11
+1,
+1<
+1&
+1/
+#20
+0&
+0/
+#25
+1L
+0J
+0O
+0I
+0F
+0G
+0M
+0N
+0H
+0K
+0P
+b0 @
+1A
+0D
+0B
+0C
+0E
+b100000 >
+b10000110000100000100000 )
+b10000110000100000100000 3
+b10000110000100000100000 ?
+b10000110000100000100000 Q
+1&
+1/
+#30
+0&
+0/
+#35
+b0x1 =
+b0x1 Y
+b100000 V
+b100000 #
+b100000 9
+b1 R
+b1 0
+b11 T
+b11 "
+b11 8
+b11 ^
+b11 .
+b11 [
+b10 S
+b10 !
+b10 7
+b10 ]
+b10 -
+b10 Z
+1&
+1/
+#40
+0&
+0/
+#45
+1&
+1/

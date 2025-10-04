@@ -1,5 +1,5 @@
 $date
-	Thu Oct 02 16:00:58 2025
+	Sat Oct 04 14:20:47 2025
 $end
 $version
 	Icarus Verilog
@@ -47,33 +47,35 @@ $var wire 32 B a_i_data_rs [31:0] $end
 $var wire 32 C a_i_data_rt [31:0] $end
 $var wire 4 D a_i_funct [3:0] $end
 $var wire 1 E funct_add $end
-$var wire 1 F funct_and $end
-$var wire 1 G funct_eq $end
-$var wire 1 H funct_ge $end
-$var wire 1 I funct_geu $end
-$var wire 1 J funct_neq $end
-$var wire 1 K funct_or $end
-$var wire 1 L funct_sll $end
-$var wire 1 M funct_slt $end
-$var wire 1 N funct_sltu $end
-$var wire 1 O funct_sra $end
-$var wire 1 P funct_srl $end
-$var wire 1 Q funct_sub $end
-$var wire 1 R funct_xor $end
-$var reg 32 S alu_value [31:0] $end
-$var reg 1 T done $end
+$var wire 1 F funct_addu $end
+$var wire 1 G funct_and $end
+$var wire 1 H funct_eq $end
+$var wire 1 I funct_ge $end
+$var wire 1 J funct_geu $end
+$var wire 1 K funct_neq $end
+$var wire 1 L funct_or $end
+$var wire 1 M funct_sll $end
+$var wire 1 N funct_slt $end
+$var wire 1 O funct_sltu $end
+$var wire 1 P funct_sra $end
+$var wire 1 Q funct_srl $end
+$var wire 1 R funct_sub $end
+$var wire 1 S funct_xor $end
+$var reg 32 T alu_value [31:0] $end
+$var reg 1 U done $end
 $upscope $end
 $upscope $end
 $scope task reset $end
-$var integer 32 U counter [31:0] $end
+$var integer 32 V counter [31:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-b10 U
-1T
-b0 S
+b10 V
+1U
+b0 T
+0S
 0R
 0Q
 0P
@@ -142,15 +144,15 @@ $end
 #25
 1A
 1%
-1>
-1"
+0>
+0"
 b100000 ?
 b100000 #
 b100 :
 b100 C
-b1001 S
+b1001 T
 b1001 /
-1T
+1U
 10
 b100000 '
 b100000 2
@@ -169,20 +171,20 @@ b101 B
 #35
 0A
 0%
+0>
+0"
 b100001 ?
 b100001 #
 b1001 =
 b1001 !
-1T
+1U
 10
-b1 S
+b1 T
 b1 /
 b1 <
 b1 D
 0E
-1Q
-1>
-1"
+1R
 b100001 '
 b100001 2
 1&
@@ -191,21 +193,21 @@ b100001 2
 0&
 01
 #45
+0>
+0"
 b100010 ?
 b100010 #
 b1 =
 b1 !
-1T
+1U
 10
-b100 S
+b100 T
 b100 /
-1F
+1G
 b10 <
 b10 D
 0E
-0Q
-1>
-1"
+0R
 b100010 '
 b100010 2
 1&
@@ -214,21 +216,21 @@ b100010 2
 0&
 01
 #55
+0>
+0"
 b100011 ?
 b100011 #
 b100 =
 b100 !
-1T
+1U
 10
-b101 S
+b101 T
 b101 /
-1K
+1L
 b11 <
 b11 D
 0E
-0F
-1>
-1"
+0G
 b100011 '
 b100011 2
 1&
@@ -237,21 +239,21 @@ b100011 2
 0&
 01
 #65
+0>
+0"
 b100100 ?
 b100100 #
 b101 =
 b101 !
-1T
+1U
 10
-b1 S
+b1 T
 b1 /
-1R
+1S
 b100 <
 b100 D
 0E
-0K
-1>
-1"
+0L
 b100100 '
 b100100 2
 1&
@@ -260,25 +262,25 @@ b100100 2
 0&
 01
 #75
+0>
+0"
 b1 =
 b1 !
-1>
-1"
 1&
 11
 #80
 0&
 01
 #85
-1>
-1"
+0>
+0"
 1&
 11
 #90
 0&
 01
 #95
-1>
-1"
+0>
+0"
 1&
 11

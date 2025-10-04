@@ -45,6 +45,11 @@ module tb;
     end
     always #5 ds_clk = ~ds_clk;
 
+    initial begin
+        $dumpfile("./waveform/decoder_stage.vcd");
+        $dumpvars(0, tb);
+    end
+
     task reset (input integer counter);
         begin
             ds_rst = 1'b0;
@@ -57,11 +62,11 @@ module tb;
         reset(2);
         ds_i_ce = 1'b1;
         @(posedge ds_clk) ds_i_instr = 32'h00430820; // ADD $1,$2,$3
-        @(posedge ds_clk) ds_i_instr = 32'h00A62021; // SUB $4,$5,$6
-        @(posedge ds_clk) ds_i_instr = 32'h01093822; // AND $7,$8,$9
-        @(posedge ds_clk) ds_i_instr = 32'h016C5023; // OR  $10,$11,$12
-        @(posedge ds_clk) ds_i_instr = 32'h01CF6824; // XOR $13,$14,$15
-        @(posedge ds_clk) ds_i_instr = 32'h0424000A; // SLTI $4, $1, 10
+        // @(posedge ds_clk) ds_i_instr = 32'h00A62021; // SUB $4,$5,$6
+        // @(posedge ds_clk) ds_i_instr = 32'h01093822; // AND $7,$8,$9
+        // @(posedge ds_clk) ds_i_instr = 32'h016C5023; // OR  $10,$11,$12
+        // @(posedge ds_clk) ds_i_instr = 32'h01CF6824; // XOR $13,$14,$15
+        // @(posedge ds_clk) ds_i_instr = 32'h0424000A; // SLTI $4, $1, 10
         #20; $finish;
     end
 

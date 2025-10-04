@@ -5,6 +5,7 @@ module tb;
     reg [DWIDTH - 1 : 0] a_i_data_rs, a_i_data_rt;
     reg [4 - 1 : 0] a_i_funct;
     wire [DWIDTH - 1 : 0] alu_value;
+    wire done;
 
     alu #(
         .DWIDTH(DWIDTH)
@@ -12,7 +13,8 @@ module tb;
         .a_i_data_rs(a_i_data_rs), 
         .a_i_data_rt(a_i_data_rt), 
         .a_i_funct(a_i_funct),
-        .alu_value(alu_value)
+        .alu_value(alu_value),
+        .done(done)
     );
 
     initial begin
@@ -40,7 +42,7 @@ module tb;
     end
 
     initial begin
-        $monitor($time, " ", "a_i_funct = %b, a_i_data_rs = %d, a_i_data_rt = %d, alu_value = %d", 
-        a_i_funct, a_i_data_rs, a_i_data_rt, alu_value);
+        $monitor($time, " ", "a_i_funct = %b, a_i_data_rs = %d, a_i_data_rt = %d, alu_value = %d, done = %b", 
+        a_i_funct, a_i_data_rs, a_i_data_rt, alu_value, done);
     end
 endmodule

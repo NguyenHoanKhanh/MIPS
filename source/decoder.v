@@ -29,6 +29,13 @@ module decode #(
     wire op_load = d_i_opcode == `LOAD;
     wire op_store = d_i_opcode == `STORE;
     wire op_branch = d_i_opcode == `BRANCH;
+    wire op_addi = d_i_opcode == `ADDI;
+    wire op_addiu = d_i_opcode == `ADDIU;
+    wire op_slti = d_i_opcode == `SLTI;
+    wire op_sltiu = d_i_opcode == `SLTIU;
+    wire op_andi = d_i_opcode == `ANDI;
+    wire op_ori = d_i_opcode == `ORI;
+    wire op_xori = d_i_opcode == `XORI;
     
     wire funct_add = d_i_funct == `ADD;
     wire funct_sub = d_i_funct == `SUB;
@@ -59,6 +66,14 @@ module decode #(
                     d_o_imm <= {DWIDTH{1'b0}};
                 end
                 else if (op_load || op_store) begin
+                    d_o_addr_rs <= temp_instr[25 : 21];
+                    d_o_addr_rt <= temp_instr[20 : 16];
+                    d_o_addr_rd <= {AWIDTH{1'b0}};
+                    d_o_opcode <= temp_instr[31 : 26];
+                    d_o_funct <= {`FUNCT_WIDTH{1'b0}};
+                    d_o_imm <= temp_instr[15 : 0];
+                end
+                else if (op_addi || op_addiu || op_slti || op_sltiu || op_andi || op_ori || op_xori) begin
                     d_o_addr_rs <= temp_instr[25 : 21];
                     d_o_addr_rt <= temp_instr[20 : 16];
                     d_o_addr_rd <= {AWIDTH{1'b0}};
