@@ -7,14 +7,15 @@ module instruction_fetch #(
     parameter IWIDTH = 32,
     parameter DEPTH = 5
 )(
-    f_clk, f_rst, f_i_ce, f_o_instr, f_o_pc, f_o_ce, f_o_valid
+    f_clk, f_rst, f_i_ce, f_i_change_pc, f_i_pc, f_o_instr, f_o_pc, f_o_ce
 );
     input f_clk, f_rst;
     input f_i_ce;
+    input f_i_change_pc;
+    input [PC_WIDTH - 1 : 0] f_i_pc;
     output reg [IWIDTH - 1 : 0] f_o_instr;
     output reg [PC_WIDTH - 1 : 0] f_o_pc;
     output reg f_o_ce;
-    output reg f_o_valid; // Use for handle pipeline
     wire [IWIDTH - 1 : 0] f_i_instr;
     wire f_i_ack;
     wire f_i_last;
@@ -38,20 +39,22 @@ module instruction_fetch #(
             f_o_pc <= {PC_WIDTH{1'b0}};
             f_o_syn <= 1'b0;
             f_o_ce <= 1'b0;
-            f_o_valid <= 1'b0;
         end
         else begin
             if (f_i_ce) begin
                 if (f_i_ack) begin
                     f_o_instr <= f_i_instr;
-                    f_o_pc <= f_o_pc + 4;
+                    if (f_i_change_pc) begin
+                        f_o_pc <= f_i_pc;
+                    end
+                    else begin
+                        f_o_pc <= f_o_pc + 4;
+                    end
                     f_o_ce <= 1'b1;
-                    f_o_valid <= 1'b1;
                 end
                 f_o_syn <= (f_i_last && f_i_ack) ? 1'b0 : 1'b1;
             end
             else begin
-                f_o_valid <= 1'b0;
                 f_o_ce <= 1'b0;
                 f_o_syn <= 1'b0;
                 f_o_instr <= {IWIDTH{1'b0}};

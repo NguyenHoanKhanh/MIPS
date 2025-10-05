@@ -27,3 +27,5 @@
 `define NEQ 6'b101011
 `define GE 6'b101100
 `define GEU 6'b101101
+`define BEQ 6'b101110
+`define BNE 6'b101111

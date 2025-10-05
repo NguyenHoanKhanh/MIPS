@@ -34,11 +34,12 @@ module processor #(
         .d_i_ce(p_i_ce), 
         .d_i_RegDst(c_d_o_RegDst), 
         .d_i_RegWrite(c_d_o_RegWrite), 
+        .d_i_Branch(c_d_o_Branch),
         .d_i_ALUSrc(c_d_o_ALUSrc), 
         .d_i_MemRead(c_d_o_MemRead), 
         .d_i_MemWrite(c_d_o_MemWrite), 
         .d_i_MemtoReg(c_d_o_MemtoReg), 
-        .d_o_pc(p_o_pc),
+        .es_is_o_pc(p_o_pc),
         .write_back_data(p_wb_data), 
         .ds_es_o_opcode(d_c_o_opcode)
     );

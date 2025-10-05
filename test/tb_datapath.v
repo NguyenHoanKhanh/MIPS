@@ -5,19 +5,20 @@ module tb;
     parameter IWIDTH = 32;
     parameter AWIDTH = 5;      
     parameter PC_WIDTH = 32;
-    parameter DEPTH = 2;
+    parameter DEPTH = 5;
     parameter AWIDTH_MEM = 32;
 
     reg d_clk, d_rst;
     reg d_i_ce;
     reg d_i_RegDst;
     reg d_i_RegWrite;
+    reg d_i_Branch;
     reg d_i_ALUSrc; 
     reg d_i_MemRead, d_i_MemWrite;
     reg d_i_MemtoReg;
-    wire [PC_WIDTH - 1 : 0] d_o_pc;
-    wire [DWIDTH - 1 : 0] write_back_data;
     wire [`OPCODE_WIDTH - 1 : 0] ds_es_o_opcode;
+    wire [PC_WIDTH - 1 : 0] es_is_o_pc;
+    wire [DWIDTH - 1 : 0] write_back_data;
 
     datapath #(
         .DWIDTH(DWIDTH),
@@ -31,12 +32,13 @@ module tb;
         .d_rst(d_rst), 
         .d_i_ce(d_i_ce), 
         .d_i_RegDst(d_i_RegDst), 
+        .d_i_Branch(d_i_Branch),
         .d_i_RegWrite(d_i_RegWrite), 
         .d_i_ALUSrc(d_i_ALUSrc), 
         .d_i_MemRead(d_i_MemRead), 
         .d_i_MemWrite(d_i_MemWrite), 
         .d_i_MemtoReg(d_i_MemtoReg), 
-        .d_o_pc(d_o_pc),
+        .es_is_o_pc(es_is_o_pc),
         .write_back_data(write_back_data),
         .ds_es_o_opcode(ds_es_o_opcode)
     );
@@ -77,7 +79,7 @@ module tb;
 
     initial begin  
         $monitor("%0t: PC=%h, instr=%h, rs_data=%h, rt_data=%h, alu_out=%h, ds_es_o_opcode = %b", 
-            $time, d.d_o_pc, d.fs_ds_o_instr, d.ds_es_o_data_rs, 
+            $time, es_is_o_pc, d.fs_ds_o_instr, d.ds_es_o_data_rs, 
             d.ds_es_o_data_rt, d.es_ms_alu_value, ds_es_o_opcode);
     end
 endmodule
