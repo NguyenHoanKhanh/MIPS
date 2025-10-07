@@ -2,7 +2,7 @@
 module tb;
     parameter IWIDTH = 32;
     parameter PC_WIDTH = 32;
-    parameter DEPTH = 5;
+    parameter DEPTH = 7;
     
     reg f_clk, f_rst;
     reg f_i_ce;
@@ -59,7 +59,7 @@ module tb;
 
     initial begin
         reset(2);
-        display(7);
+        display(9);
         repeat(10) @(posedge f_clk);
         $finish;
     end

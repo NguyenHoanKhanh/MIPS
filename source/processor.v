@@ -10,7 +10,7 @@ module processor #(
     parameter PC_WIDTH = 32,
     parameter AWIDTH_MEM = 32,
     parameter IMM_WIDTH = 16,
-    parameter DEPTH = 6
+    parameter DEPTH = 7
 ) (
     p_clk, p_rst, p_i_ce, p_o_pc, p_wb_data
 );

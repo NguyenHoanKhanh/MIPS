@@ -5,7 +5,7 @@ module tb;
     parameter IWIDTH = 32;
     parameter AWIDTH = 5;
     parameter PC_WIDTH = 32;
-    parameter DEPTH = 6;
+    parameter DEPTH = 7;
     parameter AWIDTH_MEM = 32;
     parameter IMM_WIDTH = 16;
 

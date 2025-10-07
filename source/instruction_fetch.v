@@ -5,7 +5,7 @@
 module instruction_fetch #(
     parameter PC_WIDTH = 32,
     parameter IWIDTH = 32,
-    parameter DEPTH = 6
+    parameter DEPTH = 7
 )(
     f_clk, f_rst, f_i_ce, f_i_change_pc, f_i_pc, f_o_instr, f_o_pc, f_o_ce
 );

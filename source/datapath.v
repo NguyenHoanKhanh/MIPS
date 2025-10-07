@@ -10,9 +10,9 @@ module datapath #(
     parameter IWIDTH = 32,
     parameter AWIDTH = 5,
     parameter PC_WIDTH = 32,
-    parameter DEPTH = 6,
     parameter AWIDTH_MEM = 32,
-    parameter IMM_WIDTH = 16
+    parameter IMM_WIDTH = 16,
+    parameter DEPTH = 7
 ) (
     d_clk, d_rst, d_i_ce, d_i_RegDst, d_i_RegWrite, d_i_ALUSrc,
     d_i_Branch, d_i_MemRead, d_i_MemWrite, d_i_MemtoReg, fs_es_o_pc,

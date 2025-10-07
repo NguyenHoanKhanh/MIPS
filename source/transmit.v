@@ -3,7 +3,7 @@
 
 module transmit #(
     parameter IWIDTH = 32,
-    parameter DEPTH = 6
+    parameter DEPTH = 7
 ) (
     t_clk, t_rst, t_i_syn, t_o_instr, t_o_last, t_o_ack
 );

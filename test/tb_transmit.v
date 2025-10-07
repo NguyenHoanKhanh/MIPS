@@ -1,7 +1,7 @@
 `include "./source/transmit.v"
 module tb;
     parameter IWIDTH = 32;
-    parameter DEPTH = 2;
+    parameter DEPTH = 7;
     reg t_clk, t_rst;
     reg t_i_syn;
     wire [IWIDTH - 1 : 0] t_o_instr;
@@ -55,7 +55,7 @@ module tb;
     initial begin
         reset(2);
         @(posedge t_clk);
-        display(2);
+        display(7);
         #40; $finish;
     end
 endmodule
