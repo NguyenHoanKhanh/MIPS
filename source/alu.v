@@ -7,7 +7,7 @@ module alu #(
     parameter IMM_WIDTH = 16
 ) (
     a_i_data_rs, a_i_data_rt, a_i_imm, a_i_funct, a_i_alu_src, a_i_pc, 
-    alu_value, alu_pc, done
+    alu_value, alu_pc, done, a_o_change_pc
 );
     input [DWIDTH - 1 : 0] a_i_data_rs;
     input [DWIDTH - 1 : 0] a_i_data_rt;
@@ -18,7 +18,7 @@ module alu #(
     output reg [DWIDTH - 1 : 0] alu_value;
     output reg [PC_WIDTH - 1 : 0] alu_pc;
     output reg done;
-
+    output reg a_o_change_pc;
     // sign-extend immediate (parameterized)
     wire [DWIDTH - 1 : 0] a_imm = {{(DWIDTH-IMM_WIDTH){a_i_imm[IMM_WIDTH-1]}}, a_i_imm};
     wire [DWIDTH - 1 : 0] a_o_data_2 = (a_i_alu_src) ? a_imm : a_i_data_rt;
@@ -128,10 +128,12 @@ module alu #(
         end
         else if (funct_beq) begin
             if (a_i_data_rs == a_i_data_rt) begin
-               alu_pc = a_i_pc + a_imm << 2; 
+               alu_pc = a_i_pc + (a_imm << 2); 
                alu_value = a_i_data_rs - a_i_data_rt;
+               a_o_change_pc = 1'b1;
             end
             else begin
+                a_o_change_pc = 1'b0;
                 alu_value = a_i_data_rs - a_i_data_rt;
                 alu_pc = {PC_WIDTH{1'b0}};
             end
@@ -139,10 +141,12 @@ module alu #(
         end
         else if (funct_bne) begin
             if (a_i_data_rs != a_i_data_rt) begin
-               alu_pc = a_i_pc + a_imm << 2; 
+               alu_pc = a_i_pc + (a_imm << 2); 
                alu_value = a_i_data_rs - a_i_data_rt;
+               a_o_change_pc = 1'b1;
             end
             else begin
+                a_o_change_pc = 1'b0;
                 alu_value = a_i_data_rs - a_i_data_rt;
                 alu_pc = {PC_WIDTH{1'b0}};
             end

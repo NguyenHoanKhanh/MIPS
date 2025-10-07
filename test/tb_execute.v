@@ -22,7 +22,9 @@ module tb;
     wire es_o_change_pc;
 
     execute #(
-        .DWIDTH(DWIDTH)
+        .DWIDTH(DWIDTH),
+        .IMM_WIDTH(IMM_WIDTH),
+        .PC_WIDTH(PC_WIDTH)
     ) es (
         .es_clk(es_clk),
         .es_rst(es_rst),
@@ -106,8 +108,7 @@ module tb;
         es_i_imm = 10;
         es_i_data_rs = 5;
         es_i_data_rt = 5;
-        es_i_alu_funct = `BEQ;
-        es_i_alu_op = `BRANCH;
+        es_i_alu_op = `BEQ;
         @(posedge es_clk);
         #20; $finish;
     end

@@ -17,7 +17,7 @@ module tb;
     reg d_i_MemRead, d_i_MemWrite;
     reg d_i_MemtoReg;
     wire [`OPCODE_WIDTH - 1 : 0] ds_es_o_opcode;
-    wire [PC_WIDTH - 1 : 0] es_is_o_pc;
+    wire [PC_WIDTH - 1 : 0] fs_es_o_pc;
     wire [DWIDTH - 1 : 0] write_back_data;
 
     datapath #(
@@ -38,7 +38,7 @@ module tb;
         .d_i_MemRead(d_i_MemRead), 
         .d_i_MemWrite(d_i_MemWrite), 
         .d_i_MemtoReg(d_i_MemtoReg), 
-        .es_is_o_pc(es_is_o_pc),
+        .fs_es_o_pc(fs_es_o_pc),
         .write_back_data(write_back_data),
         .ds_es_o_opcode(ds_es_o_opcode)
     );
@@ -73,13 +73,13 @@ module tb;
         d_i_MemRead  = 1'b0;
         d_i_MemWrite = 1'b0;
         d_i_MemtoReg = 1'b0; // write back từ ALU, không từ mem
-        repeat(20) @(posedge d_clk);
-        #200; $finish;
+        repeat(7) @(posedge d_clk);
+        $finish;
     end
 
     initial begin  
         $monitor("%0t: PC=%h, instr=%h, rs_data=%h, rt_data=%h, alu_out=%h, ds_es_o_opcode = %b", 
-            $time, es_is_o_pc, d.fs_ds_o_instr, d.ds_es_o_data_rs, 
+            $time, fs_es_o_pc, d.fs_ds_o_instr, d.ds_es_o_data_rs, 
             d.ds_es_o_data_rt, d.es_ms_alu_value, ds_es_o_opcode);
     end
 endmodule

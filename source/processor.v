@@ -10,7 +10,7 @@ module processor #(
     parameter PC_WIDTH = 32,
     parameter AWIDTH_MEM = 32,
     parameter IMM_WIDTH = 16,
-    parameter DEPTH = 5
+    parameter DEPTH = 6
 ) (
     p_clk, p_rst, p_i_ce, p_o_pc, p_wb_data
 );
@@ -39,7 +39,7 @@ module processor #(
         .d_i_MemRead(c_d_o_MemRead), 
         .d_i_MemWrite(c_d_o_MemWrite), 
         .d_i_MemtoReg(c_d_o_MemtoReg), 
-        .es_is_o_pc(p_o_pc),
+        .fs_es_o_pc(p_o_pc),
         .write_back_data(p_wb_data), 
         .ds_es_o_opcode(d_c_o_opcode)
     );

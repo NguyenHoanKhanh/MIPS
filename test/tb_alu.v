@@ -14,7 +14,9 @@ module tb;
     wire done;
 
     alu #(
-        .DWIDTH(DWIDTH)
+        .DWIDTH(DWIDTH),
+        .IMM_WIDTH(IMM_WIDTH),
+        .PC_WIDTH(PC_WIDTH)
     ) a (
         .a_i_data_rs(a_i_data_rs), 
         .a_i_data_rt(a_i_data_rt), 
@@ -49,20 +51,6 @@ module tb;
         a_i_pc = 10;
         a_i_funct = 15;
         #10;
-        // a_i_data_rt = 4;
-        // a_i_data_rs = 5;
-        // a_i_imm = 4;
-        // a_i_alu_src = 0;
-        // a_i_pc = 10;
-        // a_i_funct = 3;
-        // #10;
-        // a_i_data_rt = 4;
-        // a_i_data_rs = 5;
-        // a_i_imm = 4;
-        // a_i_alu_src = 0;
-        // a_i_pc = 10;
-        // a_i_funct = 4;
-        // #10;
         #20; $finish;
     end
 

@@ -20,15 +20,15 @@ module decode #(
     output reg d_o_ce;
 
     wire [DWIDTH - 1 : 0] d_i_data_rs, d_i_data_rt;
-    reg [IWIDTH - 1 : 0] temp_instr;
 
-    wire [`OPCODE_WIDTH - 1 : 0] d_i_opcode = temp_instr[31 : 26];
-    wire [`FUNCT_WIDTH - 1 : 0] d_i_funct = temp_instr[5 : 0];
+    wire [`OPCODE_WIDTH - 1 : 0] d_i_opcode = d_i_instr[31 : 26];
+    wire [`FUNCT_WIDTH - 1 : 0] d_i_funct = d_i_instr[5 : 0];
 
     wire op_rtype = d_i_opcode == `RTYPE;
     wire op_load = d_i_opcode == `LOAD;
     wire op_store = d_i_opcode == `STORE;
-    wire op_branch = d_i_opcode == `BRANCH;
+    wire op_beq = d_i_opcode == `BEQ;
+    wire op_bne = d_i_opcode == `BNE;
     wire op_addi = d_i_opcode == `ADDI;
     wire op_addiu = d_i_opcode == `ADDIU;
     wire op_slti = d_i_opcode == `SLTI;
@@ -42,7 +42,16 @@ module decode #(
     wire funct_and = d_i_funct == `AND;
     wire funct_or = d_i_funct == `OR;
     wire funct_xor = d_i_funct == `XOR;
-
+    wire [4 : 0] rs, rt, rd;
+    wire [`OPCODE_WIDTH - 1 : 0] opcode;
+    wire [`FUNCT_WIDTH - 1 : 0] funct; 
+    wire [IMM_WIDTH - 1 : 0] imm;
+    assign rs = d_i_instr[25 : 21];
+    assign rt = d_i_instr[20 : 16];
+    assign rd = d_i_instr[15 : 11];
+    assign opcode = d_i_instr[31 : 26];
+    assign funct = d_i_instr[5 : 0];
+    assign imm = d_i_instr[15 : 0];
     always @(posedge d_clk, negedge d_rst) begin
         if (!d_rst) begin
             d_o_addr_rs <= {AWIDTH{1'b0}};
@@ -55,32 +64,40 @@ module decode #(
         end 
         else begin
             if (d_i_ce) begin
-                temp_instr <= d_i_instr;
                 if (op_rtype) begin
-                    d_o_addr_rs <= temp_instr[25 : 21];
-                    d_o_addr_rt <= temp_instr[20 : 16];
-                    d_o_addr_rd <= temp_instr[15 : 11];
-                    d_o_opcode <= temp_instr[31 : 26];
-                    d_o_funct <= temp_instr[5 : 0];
+                    d_o_addr_rs <= rs;
+                    d_o_addr_rt <= rt;
+                    d_o_addr_rd <= rd;
+                    d_o_opcode <= opcode;
+                    d_o_funct <= funct;
                     d_o_imm <= {DWIDTH{1'b0}};
                     d_o_ce <= 1'b1;
                 end
                 else if (op_load || op_store) begin
-                    d_o_addr_rs <= temp_instr[25 : 21];
-                    d_o_addr_rt <= temp_instr[20 : 16];
+                    d_o_addr_rs <= rs;
+                    d_o_addr_rt <= rt;
                     d_o_addr_rd <= {AWIDTH{1'b0}};
-                    d_o_opcode <= temp_instr[31 : 26];
+                    d_o_opcode <= opcode;
                     d_o_funct <= {`FUNCT_WIDTH{1'b0}};
-                    d_o_imm <= temp_instr[15 : 0];
+                    d_o_imm <= imm;
+                    d_o_ce <= 1'b1;
+                end
+                else if (op_beq || op_bne) begin
+                    d_o_addr_rs <= rs;
+                    d_o_addr_rt <= rt;
+                    d_o_addr_rd <= {AWIDTH{1'b0}};
+                    d_o_opcode <= opcode;
+                    d_o_funct <= {`FUNCT_WIDTH{1'b0}};
+                    d_o_imm <= imm;
                     d_o_ce <= 1'b1;
                 end
                 else if (op_addi || op_addiu || op_slti || op_sltiu || op_andi || op_ori || op_xori) begin
-                    d_o_addr_rs <= temp_instr[25 : 21];
-                    d_o_addr_rt <= temp_instr[20 : 16];
+                    d_o_addr_rs <= rs;
+                    d_o_addr_rt <= rt;
                     d_o_addr_rd <= {AWIDTH{1'b0}};
-                    d_o_opcode <= temp_instr[31 : 26];
+                    d_o_opcode <= opcode;
                     d_o_funct <= {`FUNCT_WIDTH{1'b0}};
-                    d_o_imm <= temp_instr[15 : 0];
+                    d_o_imm <= imm;
                     d_o_ce <= 1'b1;
                 end
                 else begin

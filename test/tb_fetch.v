@@ -6,10 +6,11 @@ module tb;
     
     reg f_clk, f_rst;
     reg f_i_ce;
+    reg f_i_change_pc;
+    reg [PC_WIDTH - 1 : 0] f_i_pc;
     wire [IWIDTH - 1 : 0] f_o_instr;
     wire [PC_WIDTH - 1 : 0] f_o_pc; 
     wire f_o_ce;
-    wire f_o_valid;
     integer i;
 
     instruction_fetch #(
@@ -20,10 +21,11 @@ module tb;
         .f_clk(f_clk), 
         .f_rst(f_rst), 
         .f_i_ce(f_i_ce), 
+        .f_i_change_pc(f_i_change_pc),
+        .f_i_pc(f_i_pc),
         .f_o_instr(f_o_instr), 
         .f_o_pc(f_o_pc),
-        .f_o_ce(f_o_ce),
-        .f_o_valid(f_o_valid)
+        .f_o_ce(f_o_ce)
     );
 
     initial begin
@@ -49,7 +51,7 @@ module tb;
             f_i_ce = 1'b1;
             for (i = 0; i < counter; i = i + 1) begin
                 @(posedge f_clk);
-                $display($time, " ", "instr = %h, pc = %d, last = %b, syn = %b, ack = %b, ce = %b, valid = %b", f_o_instr, f_o_pc, f.f_i_last, f.f_o_syn, f.f_i_ack, f_o_ce, f_o_valid); 
+                $display($time, " ", "instr = %h, pc = %d, last = %b, syn = %b, ack = %b, ce = %b", f_o_instr, f_o_pc, f.f_i_last, f.f_o_syn, f.f_i_ack, f_o_ce); 
             end
             f_i_ce = 1'b0;
         end

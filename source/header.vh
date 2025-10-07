@@ -2,7 +2,7 @@
 `define RTYPE 0
 `define LOAD 1
 `define STORE 2
-`define BRANCH 3
+`define BEQ 3
 `define ADDI 4
 `define ADDIU 5
 `define SLTI 6
@@ -10,7 +10,7 @@
 `define ANDI 8
 `define ORI 9
 `define XORI 10
-
+`define BNE 11
 
 `define FUNCT_WIDTH 6
 `define ADD 6'b100000
@@ -27,5 +27,3 @@
 `define NEQ 6'b101011
 `define GE 6'b101100
 `define GEU 6'b101101
-`define BEQ 6'b101110
-`define BNE 6'b101111

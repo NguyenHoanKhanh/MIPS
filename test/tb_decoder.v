@@ -72,6 +72,7 @@ module tb_decoder;
         @(posedge d_clk) d_i_instr = 32'h01093822; // AND $7,$8,$9
         @(posedge d_clk) d_i_instr = 32'h016C5023; // OR  $10,$11,$12
         @(posedge d_clk) d_i_instr = 32'h01CF6824; // XOR $13,$14,$15
+        @(posedge d_clk) d_i_instr = 32'h10410064; //ADDI $1, $2, 100
 
         // Thêm vài chu kỳ để quan sát output
         repeat(5) @(posedge d_clk);

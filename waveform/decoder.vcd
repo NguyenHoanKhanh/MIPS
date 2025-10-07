@@ -1,5 +1,5 @@
 $date
-	Thu Oct 02 13:36:23 2025
+	Tue Oct 07 19:13:41 2025
 $end
 $version
 	Icarus Verilog
@@ -23,58 +23,80 @@ $var reg 1 , d_rst $end
 $scope module dut $end
 $var wire 1 - d_clk $end
 $var wire 1 . d_i_ce $end
-$var wire 32 / d_i_data_rd [31:0] $end
-$var wire 6 0 d_i_funct [5:0] $end
-$var wire 32 1 d_i_instr [31:0] $end
-$var wire 6 2 d_i_opcode [5:0] $end
-$var wire 1 3 d_rst $end
+$var wire 6 / d_i_funct [5:0] $end
+$var wire 32 0 d_i_instr [31:0] $end
+$var wire 6 1 d_i_opcode [5:0] $end
+$var wire 1 2 d_rst $end
+$var wire 6 3 funct [5:0] $end
 $var wire 1 4 funct_add $end
 $var wire 1 5 funct_and $end
 $var wire 1 6 funct_or $end
 $var wire 1 7 funct_sub $end
 $var wire 1 8 funct_xor $end
-$var wire 1 9 op_branch $end
-$var wire 1 : op_itype $end
-$var wire 1 ; op_load $end
-$var wire 1 < op_rtype $end
-$var wire 1 = op_store $end
-$var wire 32 > temp_instr [31:0] $end
-$var reg 5 ? d_o_addr_rd [4:0] $end
-$var reg 5 @ d_o_addr_rs [4:0] $end
-$var reg 5 A d_o_addr_rt [4:0] $end
-$var reg 1 B d_o_ce $end
-$var reg 6 C d_o_funct [5:0] $end
-$var reg 16 D d_o_imm [15:0] $end
-$var reg 6 E d_o_opcode [5:0] $end
+$var wire 16 9 imm [15:0] $end
+$var wire 1 : op_addi $end
+$var wire 1 ; op_addiu $end
+$var wire 1 < op_andi $end
+$var wire 1 = op_beq $end
+$var wire 1 > op_bne $end
+$var wire 1 ? op_load $end
+$var wire 1 @ op_ori $end
+$var wire 1 A op_rtype $end
+$var wire 1 B op_slti $end
+$var wire 1 C op_sltiu $end
+$var wire 1 D op_store $end
+$var wire 1 E op_xori $end
+$var wire 6 F opcode [5:0] $end
+$var wire 5 G rd [4:0] $end
+$var wire 5 H rs [4:0] $end
+$var wire 5 I rt [4:0] $end
+$var reg 5 J d_o_addr_rd [4:0] $end
+$var reg 5 K d_o_addr_rs [4:0] $end
+$var reg 5 L d_o_addr_rt [4:0] $end
+$var reg 1 M d_o_ce $end
+$var reg 6 N d_o_funct [5:0] $end
+$var reg 16 O d_o_imm [15:0] $end
+$var reg 6 P d_o_opcode [5:0] $end
 $upscope $end
 $scope task reset $end
-$var integer 32 F cycles [31:0] $end
+$var integer 32 Q cycles [31:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-b10 F
-b0 E
-b0 D
-b0 C
+b10 Q
+b0 P
+b0 O
+b0 N
+0M
+b0 L
+b0 K
+b0 J
+b0 I
+b0 H
+b0 G
+b0 F
+0E
+0D
+0C
 0B
-b0 A
-b0 @
-b0 ?
-b0 >
+1A
+0@
+0?
+0>
 0=
-1<
+0<
 0;
 0:
-09
+b0 9
 08
 07
 06
 05
 04
-03
-b0 2
+b0 3
+02
 b0 1
 b0 0
 b0 /
@@ -101,14 +123,14 @@ $end
 0-
 #15000
 1,
-13
+12
 1(
 1-
 #20000
 0(
 0-
 #25000
-1B
+1M
 1$
 1)
 1.
@@ -118,111 +140,153 @@ $end
 0(
 0-
 #35000
-b100000 C
-b100000 %
-b1 ?
-b1 !
-b11 A
-b11 #
-b10 @
-b10 "
 14
-b100000 0
+b100000 /
+b10 H
+b11 I
+b1 G
+b100000 3
+b100000100000 9
 b10000110000100000100000 +
-b10000110000100000100000 >
-b10000110000100000100000 1
+b10000110000100000100000 0
 1(
 1-
 #40000
 0(
 0-
 #45000
-b100001 C
-b100001 %
-b100 ?
-b100 !
-b110 A
-b110 #
-b101 @
-b101 "
+b100000 N
+b100000 %
+b1 J
+b1 !
+b11 L
+b11 #
+b10 K
+b10 "
 04
 17
-b100001 0
+b100001 /
+b101 H
+b110 I
+b100 G
+b100001 3
+b10000000100001 9
 b101001100010000000100001 +
-b101001100010000000100001 >
-b101001100010000000100001 1
+b101001100010000000100001 0
 1(
 1-
 #50000
 0(
 0-
 #55000
-b100010 C
-b100010 %
-b111 ?
-b111 !
-b1001 A
-b1001 #
-b1000 @
-b1000 "
+b100001 N
+b100001 %
+b100 J
+b100 !
+b110 L
+b110 #
+b101 K
+b101 "
 07
 15
-b100010 0
+b100010 /
+b1000 H
+b1001 I
+b111 G
+b100010 3
+b11100000100010 9
 b1000010010011100000100010 +
-b1000010010011100000100010 >
-b1000010010011100000100010 1
+b1000010010011100000100010 0
 1(
 1-
 #60000
 0(
 0-
 #65000
-b100011 C
-b100011 %
-b1010 ?
-b1010 !
-b1100 A
-b1100 #
-b1011 @
-b1011 "
+b100010 N
+b100010 %
+b111 J
+b111 !
+b1001 L
+b1001 #
+b1000 K
+b1000 "
 05
 16
-b100011 0
+b100011 /
+b1011 H
+b1100 I
+b1010 G
+b100011 3
+b101000000100011 9
 b1011011000101000000100011 +
-b1011011000101000000100011 >
-b1011011000101000000100011 1
+b1011011000101000000100011 0
 1(
 1-
 #70000
 0(
 0-
 #75000
-b100100 C
-b100100 %
-b1101 ?
-b1101 !
-b1111 A
-b1111 #
-b1110 @
-b1110 "
+b100011 N
+b100011 %
+b1010 J
+b1010 !
+b1100 L
+b1100 #
+b1011 K
+b1011 "
 06
 18
-b100100 0
+b100100 /
+b1110 H
+b1111 I
+b1101 G
+b100100 3
+b110100000100100 9
 b1110011110110100000100100 +
-b1110011110110100000100100 >
-b1110011110110100000100100 1
+b1110011110110100000100100 0
 1(
 1-
 #80000
 0(
 0-
 #85000
+b100100 N
+b100100 %
+b1101 J
+b1101 !
+b1111 L
+b1111 #
+b1110 K
+b1110 "
+0A
+1:
+b100 1
+b10 H
+b1 I
+b0 G
+b100 F
+b1100100 9
+b10000010000010000000001100100 +
+b10000010000010000000001100100 0
 1(
 1-
 #90000
 0(
 0-
 #95000
+b1100100 O
+b1100100 &
+b0 N
+b0 %
+b100 P
+b100 '
+b0 J
+b0 !
+b1 L
+b1 #
+b10 K
+b10 "
 1(
 1-
 #100000
@@ -241,5 +305,11 @@ b1110011110110100000100100 1
 0(
 0-
 #125000
+1(
+1-
+#130000
+0(
+0-
+#135000
 1(
 1-

@@ -10,12 +10,12 @@ module datapath #(
     parameter IWIDTH = 32,
     parameter AWIDTH = 5,
     parameter PC_WIDTH = 32,
-    parameter DEPTH = 5,
+    parameter DEPTH = 6,
     parameter AWIDTH_MEM = 32,
     parameter IMM_WIDTH = 16
 ) (
     d_clk, d_rst, d_i_ce, d_i_RegDst, d_i_RegWrite, d_i_ALUSrc,
-    d_i_Branch, d_i_MemRead, d_i_MemWrite, d_i_MemtoReg, es_is_o_pc,
+    d_i_Branch, d_i_MemRead, d_i_MemWrite, d_i_MemtoReg, fs_es_o_pc,
     write_back_data, ds_es_o_opcode
 );
     input d_clk, d_rst;
@@ -27,12 +27,11 @@ module datapath #(
     input d_i_MemRead, d_i_MemWrite;
     input d_i_MemtoReg;
     output [`OPCODE_WIDTH - 1 : 0] ds_es_o_opcode;
-    output [PC_WIDTH - 1 : 0] es_is_o_pc;
+    output [PC_WIDTH - 1 : 0] fs_es_o_pc;
     output [DWIDTH - 1 : 0] write_back_data;
 
 
     wire [IWIDTH - 1 : 0] fs_ds_o_instr;
-    wire [PC_WIDTH - 1 : 0] fs_es_o_pc;
     wire fs_ds_o_ce;
     instruction_fetch #(
         .PC_WIDTH(PC_WIDTH),
@@ -76,6 +75,7 @@ module datapath #(
     wire [DWIDTH - 1 : 0] es_ms_alu_value;
     wire es_o_zero;
     wire [`OPCODE_WIDTH - 1 : 0] es_o_opcode;
+    wire [PC_WIDTH - 1 : 0] es_is_o_pc;
     wire [`FUNCT_WIDTH - 1 : 0] es_o_funct;
     wire es_ms_o_ce;
     wire es_is_change_pc;

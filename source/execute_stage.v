@@ -9,8 +9,8 @@ module execute #(
     parameter PC_WIDTH = 32
 ) (
     es_clk, es_rst, es_i_ce, es_i_branch, es_i_pc, es_i_alu_src, es_i_imm, es_i_alu_op, es_i_alu_funct,
-    es_i_data_rs, es_i_data_rt, es_o_alu_value, es_o_opcode, es_o_funct, es_o_zero,
-    es_o_ce, es_o_alu_pc, es_o_change_pc
+    es_i_data_rs, es_i_data_rt, es_o_alu_value, es_o_opcode, es_o_funct, es_o_zero, es_o_ce, 
+    es_o_alu_pc, es_o_change_pc
 );
     input  es_clk, es_rst;
     input  es_i_ce;
@@ -31,8 +31,8 @@ module execute #(
 
     // alu_control computed combinationally from opcode/funct
     reg [4 : 0] alu_control;
-    always @* begin
-        alu_control = 4'd0;
+    always @(*) begin
+        alu_control = 5'd0;
         if (es_i_alu_op == `RTYPE) begin
             case (es_i_alu_funct)
                 `ADD:  alu_control = 5'd0;
@@ -77,13 +77,11 @@ module execute #(
         else if (es_i_alu_op == `XORI) begin
             alu_control = 5'd4;
         end
-        else if (es_i_alu_op == `BRANCH) begin
-            if (es_i_alu_funct == `BEQ) begin
-                alu_control = 5'd15;
-            end
-            else if (es_i_alu_funct == `BNE) begin
-                alu_control = 5'd16;
-            end
+        else if (es_i_alu_op == `BEQ) begin
+            alu_control = 5'd15;
+        end
+        else if (es_i_alu_op == `BNE) begin
+            alu_control = 5'd16;
         end
     end
 
@@ -91,7 +89,7 @@ module execute #(
     wire [DWIDTH - 1 : 0] alu_value;
     wire [PC_WIDTH - 1 : 0] alu_pc;
     wire done;
-
+    wire change_pc;
     alu #(
         .DWIDTH(DWIDTH),
         .PC_WIDTH(PC_WIDTH),
@@ -105,7 +103,8 @@ module execute #(
         .a_i_pc(es_i_pc), 
         .alu_value(alu_value), 
         .alu_pc(alu_pc), 
-        .done(done)
+        .done(done),
+        .a_o_change_pc(change_pc)
     );
 
     wire temp_zero;
@@ -123,28 +122,29 @@ module execute #(
         end
         else begin
             if (es_i_ce) begin
+                es_o_change_pc <= 1'b0;
                 es_o_alu_value <= alu_value;
                 es_o_opcode <= es_i_alu_op;
                 es_o_funct  <= es_i_alu_funct;
                 es_o_zero <= temp_zero;
-                if (es_i_alu_funct == `BEQ) begin
+                if (es_i_alu_op == `BEQ) begin
                     if (es_i_branch && temp_zero) begin
                         es_o_alu_pc <= alu_pc;
-                        es_o_change_pc <= 1'b1;
+                        es_o_change_pc <= change_pc;
                     end
                     else begin 
-                        es_o_alu_pc <= es_i_pc;
                         es_o_change_pc <= 1'b0;
+                        es_o_alu_pc <= es_i_pc;
                     end
                 end
-                if (es_i_alu_funct == `BNE) begin
+                if (es_i_alu_op == `BNE) begin
                     if (es_i_branch && ~temp_zero) begin
                         es_o_alu_pc <= alu_pc;
-                        es_o_change_pc <= 1'b1;
+                        es_o_change_pc <= change_pc;
                     end
                     else begin 
-                        es_o_alu_pc <= es_i_pc;
                         es_o_change_pc <= 1'b0;
+                        es_o_alu_pc <= es_i_pc;
                     end
                 end
                 if (done) begin
@@ -152,6 +152,7 @@ module execute #(
                 end
             end
             else begin
+                es_o_change_pc <= 1'b0;
                 es_o_alu_value <= {DWIDTH{1'b0}};
                 es_o_alu_pc <= {PC_WIDTH{1'b0}};
                 es_o_zero <= 1'b0;

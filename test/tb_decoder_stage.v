@@ -18,7 +18,6 @@ module tb;
     wire [DWIDTH - 1 : 0] ds_o_data_rt;
     wire [IMM_WIDTH - 1 : 0] ds_o_imm;
 
-
     decoder_stage #(
         .AWIDTH(AWIDTH),
         .DWIDTH(DWIDTH),
