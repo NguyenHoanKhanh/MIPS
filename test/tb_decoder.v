@@ -2,31 +2,20 @@
 `include "./source/decoder.v"
 
 module tb_decoder;
-    parameter AWIDTH = 5;
-    parameter IWIDTH = 32; 
-    parameter DWIDTH = 32;
-    parameter IMM_WIDTH = 16;
-
     reg d_clk, d_rst;
     reg d_i_ce;
-    reg [IWIDTH - 1 : 0] d_i_instr;
-    reg [DWIDTH - 1 : 0] d_i_data_rd;
+    reg [`IWIDTH - 1 : 0] d_i_instr;
+    reg [`DWIDTH - 1 : 0] d_i_data_rd;
     wire [`OPCODE_WIDTH - 1 : 0] d_o_opcode;
     wire [`FUNCT_WIDTH  - 1 : 0] d_o_funct;
-    wire [AWIDTH - 1 : 0] d_o_addr_rs, d_o_addr_rt;
-    wire [AWIDTH - 1 : 0] d_o_addr_rd;
-    wire [DWIDTH - 1 : 0] d_o_data_rs, d_o_data_rt;
-    wire [IMM_WIDTH - 1 : 0] d_o_imm;
+    wire [`AWIDTH - 1 : 0] d_o_addr_rs, d_o_addr_rt;
+    wire [`AWIDTH - 1 : 0] d_o_addr_rd;
+    wire [`DWIDTH - 1 : 0] d_o_data_rs, d_o_data_rt;
+    wire [`IMM_WIDTH - 1 : 0] d_o_imm;
     wire d_i_wr_reg;
 
     // Instantiate decoder
-    decode #(
-        .AWIDTH(AWIDTH),
-        .DWIDTH(DWIDTH),
-        .IWIDTH(IWIDTH)
-    ) dut (
-        .d_clk(d_clk), 
-        .d_rst(d_rst), 
+    decode dut (
         .d_i_ce(d_i_ce), 
         .d_i_instr(d_i_instr), 
         .d_o_opcode(d_o_opcode), 

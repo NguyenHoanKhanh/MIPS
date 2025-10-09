@@ -1,20 +1,15 @@
 `include "./source/memory.v"
 
 module tb;
-    parameter DWIDTH = 32;
-    parameter AWIDTH_MEM = 32;
     reg m_clk, m_rst;
     reg m_wr_en, m_rd_en;
     reg m_i_ce;
-    reg [AWIDTH_MEM - 1 : 0] alu_value_addr;
-    reg [DWIDTH - 1 : 0] m_i_store_data;
-    wire [DWIDTH - 1 : 0] m_o_load_data;
+    reg [`AWIDTH_MEM - 1 : 0] alu_value_addr;
+    reg [`DWIDTH - 1 : 0] m_i_store_data;
+    wire [`DWIDTH - 1 : 0] m_o_load_data;
     integer i;
 
-    memory #(
-        .AWIDTH_MEM(AWIDTH_MEM),
-        .DWIDTH(DWIDTH)
-    ) m (
+    memory m (
         .m_clk(m_clk), 
         .m_rst(m_rst), 
         .m_wr_en(m_wr_en), 

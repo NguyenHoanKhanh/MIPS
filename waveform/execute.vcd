@@ -1,5 +1,5 @@
 $date
-	Tue Oct 07 18:56:03 2025
+	Thu Oct 09 11:14:14 2025
 $end
 $version
 	Icarus Verilog
@@ -27,10 +27,10 @@ $var reg 16 0 es_i_imm [15:0] $end
 $var reg 32 1 es_i_pc [31:0] $end
 $var reg 1 2 es_rst $end
 $scope module es $end
-$var wire 32 3 alu_pc [31:0] $end
-$var wire 32 4 alu_value [31:0] $end
-$var wire 1 5 change_pc $end
-$var wire 1 6 done $end
+$var wire 5 3 alu_control [4:0] $end
+$var wire 32 4 alu_pc [31:0] $end
+$var wire 32 5 alu_value [31:0] $end
+$var wire 1 6 change_pc $end
 $var wire 1 7 es_clk $end
 $var wire 6 8 es_i_alu_funct [5:0] $end
 $var wire 6 9 es_i_alu_op [5:0] $end
@@ -43,58 +43,62 @@ $var wire 16 ? es_i_imm [15:0] $end
 $var wire 32 @ es_i_pc [31:0] $end
 $var wire 1 A es_rst $end
 $var wire 1 B temp_zero $end
-$var reg 5 C alu_control [4:0] $end
-$var reg 32 D es_o_alu_pc [31:0] $end
-$var reg 32 E es_o_alu_value [31:0] $end
-$var reg 1 F es_o_ce $end
-$var reg 1 G es_o_change_pc $end
-$var reg 6 H es_o_funct [5:0] $end
-$var reg 6 I es_o_opcode [5:0] $end
-$var reg 1 J es_o_zero $end
+$var reg 32 C es_o_alu_pc [31:0] $end
+$var reg 32 D es_o_alu_value [31:0] $end
+$var reg 1 E es_o_ce $end
+$var reg 1 F es_o_change_pc $end
+$var reg 6 G es_o_funct [5:0] $end
+$var reg 6 H es_o_opcode [5:0] $end
+$var reg 1 I es_o_zero $end
+$scope module ac $end
+$var wire 6 J ac_i_funct [5:0] $end
+$var wire 6 K ac_i_opcode [5:0] $end
+$var reg 5 L ac_o_control [4:0] $end
+$upscope $end
 $scope module a $end
 $var wire 1 : a_i_alu_src $end
-$var wire 32 K a_i_data_rs [31:0] $end
-$var wire 32 L a_i_data_rt [31:0] $end
-$var wire 5 M a_i_funct [4:0] $end
-$var wire 16 N a_i_imm [15:0] $end
-$var wire 32 O a_i_pc [31:0] $end
-$var wire 32 P a_imm [31:0] $end
-$var wire 32 Q a_o_data_2 [31:0] $end
-$var wire 1 R funct_add $end
-$var wire 1 S funct_addu $end
-$var wire 1 T funct_and $end
-$var wire 1 U funct_beq $end
-$var wire 1 V funct_bne $end
-$var wire 1 W funct_eq $end
-$var wire 1 X funct_ge $end
-$var wire 1 Y funct_geu $end
-$var wire 1 Z funct_neq $end
-$var wire 1 [ funct_or $end
-$var wire 1 \ funct_sll $end
-$var wire 1 ] funct_slt $end
-$var wire 1 ^ funct_sltu $end
-$var wire 1 _ funct_sra $end
-$var wire 1 ` funct_srl $end
-$var wire 1 a funct_sub $end
-$var wire 1 b funct_xor $end
-$var reg 1 c a_o_change_pc $end
-$var reg 32 d alu_pc [31:0] $end
-$var reg 32 e alu_value [31:0] $end
-$var reg 1 f done $end
+$var wire 32 M a_i_data_rs [31:0] $end
+$var wire 32 N a_i_data_rt [31:0] $end
+$var wire 5 O a_i_funct [4:0] $end
+$var wire 16 P a_i_imm [15:0] $end
+$var wire 32 Q a_i_pc [31:0] $end
+$var wire 32 R a_imm [31:0] $end
+$var wire 32 S a_o_data_2 [31:0] $end
+$var wire 1 T funct_add $end
+$var wire 1 U funct_addu $end
+$var wire 1 V funct_and $end
+$var wire 1 W funct_beq $end
+$var wire 1 X funct_bne $end
+$var wire 1 Y funct_eq $end
+$var wire 1 Z funct_ge $end
+$var wire 1 [ funct_geu $end
+$var wire 1 \ funct_neq $end
+$var wire 1 ] funct_or $end
+$var wire 1 ^ funct_sll $end
+$var wire 1 _ funct_slt $end
+$var wire 1 ` funct_sltu $end
+$var wire 1 a funct_sra $end
+$var wire 1 b funct_srl $end
+$var wire 1 c funct_sub $end
+$var wire 1 d funct_xor $end
+$var reg 1 e a_o_change_pc $end
+$var reg 32 f alu_pc [31:0] $end
+$var reg 32 g alu_value [31:0] $end
 $upscope $end
 $upscope $end
 $scope task reset $end
-$var integer 32 g counter [31:0] $end
+$var integer 32 h counter [31:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-b10 g
-1f
-b0 e
-b0 d
-xc
+b10 h
+b0 g
+b0 f
+0e
+0d
+0c
 0b
 0a
 0`
@@ -109,9 +113,9 @@ xc
 0W
 0V
 0U
-0T
-0S
-1R
+1T
+b0 S
+b0 R
 b0 Q
 b0 P
 b0 O
@@ -119,12 +123,12 @@ b0 N
 b0 M
 b0 L
 b0 K
-0J
-b0 I
+b0 J
+0I
 b0 H
-0G
+b0 G
 0F
-b0 E
+0E
 b0 D
 b0 C
 1B
@@ -139,8 +143,8 @@ b0 =
 b0 9
 b0 8
 07
-16
-x5
+06
+b0 5
 b0 4
 b0 3
 02
@@ -177,33 +181,34 @@ $end
 0(
 07
 #25
-1F
-1#
-1J
-1'
-b100000 H
-b100000 %
 0B
-b100 Q
-b1001 e
-b1001 4
-1f
-16
+b1001 D
+b1001 "
+b100 S
+b1001 g
+b1001 5
+1E
+1#
+0I
+0'
+b100000 G
+b100000 %
 b100000 )
 b100000 8
+b100000 J
 b100 /
 b100 >
-b100 L
+b100 N
 b101 .
 b101 =
-b101 K
+b101 M
 b1010 0
 b1010 ?
-b1010 N
 b1010 P
+b1010 R
 b1010 1
 b1010 @
-b1010 O
+b1010 Q
 1-
 1<
 1(
@@ -212,53 +217,58 @@ b1010 O
 0(
 07
 #35
-1f
-16
-b1 e
-b1 4
-b1 C
-b1 M
-0R
-1a
-0J
-0'
-b100001 H
+b1 g
+b1 5
+b1 L
+0T
+1c
+b1 3
+b1 O
+1E
+1#
+b100001 G
 b100001 %
-b1001 E
-b1001 "
+b1 D
+b1 "
 b100001 )
 b100001 8
+b100001 J
 1(
 17
 #40
 0(
 07
 #45
+1I
+1'
 1B
-1c
-15
-b1010000 d
-b1010000 3
-b1010 D
-b1010 !
-b11 I
-b11 &
-b1 E
-b1 "
-b1111 C
-b1111 M
-0a
-1U
-1f
+1e
 16
-b0 e
-b0 4
-b1010 Q
+b110010 f
+b110010 4
+1W
+b1111 L
+0T
+0c
+b1111 3
+b1111 O
+b11 H
+b11 &
+0E
+0#
+b100001 G
+b100001 %
+b0 D
+b0 "
+b0 g
+b0 5
+b1010 S
 b11 *
 b11 9
+b11 K
 b101 /
 b101 >
-b101 L
+b101 N
 1,
 1;
 1+
@@ -269,14 +279,12 @@ b101 L
 0(
 07
 #55
-1G
+1E
+1#
+1F
 1$
-b1010000 D
-b1010000 !
-1J
-1'
-b0 E
-b0 "
+b110010 C
+b110010 !
 1(
 17
 #60

@@ -1,29 +1,19 @@
 `include "./source/decoder_stage.v"
 
 module tb;
-    parameter AWIDTH = 5;
-    parameter DWIDTH = 32;
-    parameter IWIDTH = 32;
-    parameter IMM_WIDTH = 16;
-
     reg ds_clk, ds_rst;
     reg ds_i_ce;
     reg ds_i_reg_dst;
     reg ds_i_reg_wr;
-    reg [DWIDTH - 1 : 0] ds_i_data_rd;
-    reg [IWIDTH - 1 : 0] ds_i_instr;
+    reg [`DWIDTH - 1 : 0] ds_i_data_rd;
+    reg [`IWIDTH - 1 : 0] ds_i_instr;
     wire [`OPCODE_WIDTH - 1 : 0] ds_o_opcode;
     wire [`FUNCT_WIDTH - 1 : 0] ds_o_funct;
-    wire [DWIDTH - 1 : 0] ds_o_data_rs;
-    wire [DWIDTH - 1 : 0] ds_o_data_rt;
-    wire [IMM_WIDTH - 1 : 0] ds_o_imm;
+    wire [`DWIDTH - 1 : 0] ds_o_data_rs;
+    wire [`DWIDTH - 1 : 0] ds_o_data_rt;
+    wire [`IMM_WIDTH - 1 : 0] ds_o_imm;
 
-    decoder_stage #(
-        .AWIDTH(AWIDTH),
-        .DWIDTH(DWIDTH),
-        .IWIDTH(IWIDTH),
-        .IMM_WIDTH(IMM_WIDTH)
-    ) ds (
+    decoder_stage ds (
         .ds_clk(ds_clk), 
         .ds_rst(ds_rst), 
         .ds_i_ce(ds_i_ce), 

@@ -2,7 +2,7 @@
 module tb;
     parameter IWIDTH = 32;
     parameter PC_WIDTH = 32;
-    parameter DEPTH = 7;
+    parameter DEPTH = 6;
     
     reg f_clk, f_rst;
     reg f_i_ce;

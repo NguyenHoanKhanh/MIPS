@@ -27,3 +27,12 @@
 `define NEQ 6'b101011
 `define GE 6'b101100
 `define GEU 6'b101101
+`define ADDU 6'b101110
+
+`define DWIDTH 32
+`define IWIDTH 32
+`define AWIDTH 5
+`define PC_WIDTH 32
+`define AWIDTH_MEM 32
+`define IMM_WIDTH 16
+`define DEPTH 5

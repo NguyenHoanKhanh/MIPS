@@ -26,14 +26,7 @@ module decoder_stage #(
     wire [AWIDTH - 1 : 0] d_o_addr_rs, d_o_addr_rt;
     wire [AWIDTH - 1 : 0] ds_i_addr_rd;
     
-    decode #(
-        .AWIDTH(AWIDTH),
-        .DWIDTH(DWIDTH),
-        .IWIDTH(IWIDTH),
-        .IMM_WIDTH(IMM_WIDTH)
-    ) d (
-        .d_clk(ds_clk), 
-        .d_rst(ds_rst), 
+    decode d (
         .d_i_ce(ds_i_ce), 
         .d_i_instr(ds_i_instr), 
         .d_o_opcode(ds_o_opcode), 
@@ -48,10 +41,7 @@ module decoder_stage #(
     wire [AWIDTH - 1 : 0] write_register;
     assign write_register = (ds_i_reg_dst) ? ds_i_addr_rd : d_o_addr_rt;
 
-    register #(
-        .AWIDTH(AWIDTH),
-        .DWIDTH(DWIDTH)
-    ) r (
+    register r (
         .r_clk(ds_clk), 
         .r_rst(ds_rst), 
         .r_wr_en(ds_i_reg_wr), 

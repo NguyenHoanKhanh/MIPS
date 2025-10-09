@@ -1,19 +1,15 @@
 `include "./source/register.v"
 
 module tb;
-    parameter DWIDTH = 32, AWIDTH = 5;
     reg r_clk, r_rst;
     reg r_wr_en;
-    reg [DWIDTH - 1 : 0] r_data_in;
-    reg [AWIDTH - 1 : 0] r_addr_in;
-    wire [DWIDTH - 1 : 0] r_data_out1, r_data_out2;
-    reg [AWIDTH - 1 : 0] r_addr_out1, r_addr_out2;
+    reg [`DWIDTH - 1 : 0] r_data_in;
+    reg [`AWIDTH - 1 : 0] r_addr_in;
+    wire [`DWIDTH - 1 : 0] r_data_out1, r_data_out2;
+    reg [`AWIDTH - 1 : 0] r_addr_out1, r_addr_out2;
     integer i;
 
-    register #(
-        .DWIDTH(DWIDTH),
-        .AWIDTH(AWIDTH)
-    ) r_eg (
+    register r_eg (
         .r_clk(r_clk), 
         .r_rst(r_rst), 
         .r_wr_en(r_wr_en), 
@@ -28,9 +24,9 @@ module tb;
     initial begin
         i = 0;
         r_wr_en = 1'b0;
-        r_addr_in = {AWIDTH{1'b0}};
-        r_addr_out1 = {AWIDTH{1'b0}};
-        r_addr_out2 = {AWIDTH{1'b0}};
+        r_addr_in = {`AWIDTH{1'b0}};
+        r_addr_out1 = {`AWIDTH{1'b0}};
+        r_addr_out2 = {`AWIDTH{1'b0}};
         r_clk = 1'b0;
     end
     always #5 r_clk = ~r_clk;

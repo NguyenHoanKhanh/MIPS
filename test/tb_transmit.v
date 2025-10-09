@@ -1,17 +1,12 @@
 `include "./source/transmit.v"
 module tb;
-    parameter IWIDTH = 32;
-    parameter DEPTH = 7;
     reg t_clk, t_rst;
     reg t_i_syn;
-    wire [IWIDTH - 1 : 0] t_o_instr;
+    wire [`IWIDTH - 1 : 0] t_o_instr;
     wire t_o_last, t_o_ack;
     integer i;
 
-    transmit #(
-        .IWIDTH(IWIDTH),
-        .DEPTH(DEPTH)
-    ) t (
+    transmit t (
         .t_clk(t_clk), 
         .t_rst(t_rst), 
         .t_i_syn(t_i_syn),

@@ -2,33 +2,18 @@
 `define PROCESSOR_V
 `include "./source/datapath.v"
 `include "./source/controller.v"
+`include "./source/header.vh"
 
-module processor #(
-    parameter DWIDTH = 32,
-    parameter IWIDTH = 32,
-    parameter AWIDTH = 5,
-    parameter PC_WIDTH = 32,
-    parameter AWIDTH_MEM = 32,
-    parameter IMM_WIDTH = 16,
-    parameter DEPTH = 7
-) (
+module processor (
     p_clk, p_rst, p_i_ce, p_o_pc, p_wb_data
 );
     input p_clk, p_rst;
     input p_i_ce;
-    output [PC_WIDTH - 1 : 0] p_o_pc;
-    output [DWIDTH - 1 : 0] p_wb_data;
+    output [`PC_WIDTH - 1 : 0] p_o_pc;
+    output [`DWIDTH - 1 : 0] p_wb_data;
 
     wire [`OPCODE_WIDTH - 1 : 0] d_c_o_opcode;
-    datapath #(
-        .DWIDTH(DWIDTH),
-        .AWIDTH(AWIDTH),
-        .IWIDTH(IWIDTH),
-        .PC_WIDTH(PC_WIDTH),
-        .DEPTH(DEPTH),
-        .AWIDTH_MEM(AWIDTH_MEM),
-        .IMM_WIDTH(IMM_WIDTH)
-    ) d (
+    datapath d (
         .d_clk(p_clk), 
         .d_rst(p_rst), 
         .d_i_ce(p_i_ce), 
