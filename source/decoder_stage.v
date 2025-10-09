@@ -2,13 +2,8 @@
 `define DECODER_STAGE_V
 `include "./source/decoder.v"
 `include "./source/register.v"
-
-module decoder_stage #(
-    parameter AWIDTH = 5,
-    parameter DWIDTH = 32,
-    parameter IWIDTH = 32,
-    parameter IMM_WIDTH = 16
-)(
+`include "./source/header.vh"
+module decoder_stage (
     ds_clk, ds_rst, ds_i_ce, ds_i_reg_dst, ds_i_data_rd, ds_i_instr, ds_o_opcode, 
     ds_o_funct, ds_o_data_rs, ds_o_data_rt, ds_o_imm, ds_o_ce, ds_i_reg_wr
 );
@@ -16,15 +11,15 @@ module decoder_stage #(
     input ds_i_ce;
     input ds_i_reg_dst;
     input ds_i_reg_wr;
-    input [DWIDTH - 1 : 0] ds_i_data_rd;
-    input [IWIDTH - 1 : 0] ds_i_instr;
+    input [`DWIDTH - 1 : 0] ds_i_data_rd;
+    input [`IWIDTH - 1 : 0] ds_i_instr;
     output [`OPCODE_WIDTH - 1 : 0] ds_o_opcode;
     output [`FUNCT_WIDTH - 1 : 0] ds_o_funct;
-    output [DWIDTH - 1 : 0] ds_o_data_rs, ds_o_data_rt;
-    output [IMM_WIDTH - 1 : 0] ds_o_imm;
+    output [`DWIDTH - 1 : 0] ds_o_data_rs, ds_o_data_rt;
+    output [`IMM_WIDTH - 1 : 0] ds_o_imm;
     output ds_o_ce;
-    wire [AWIDTH - 1 : 0] d_o_addr_rs, d_o_addr_rt;
-    wire [AWIDTH - 1 : 0] ds_i_addr_rd;
+    wire [`AWIDTH - 1 : 0] d_o_addr_rs, d_o_addr_rt;
+    wire [`AWIDTH - 1 : 0] ds_i_addr_rd;
     
     decode d (
         .d_i_ce(ds_i_ce), 
@@ -38,7 +33,7 @@ module decoder_stage #(
         .d_o_ce(ds_o_ce)
     );
 
-    wire [AWIDTH - 1 : 0] write_register;
+    wire [`AWIDTH - 1 : 0] write_register;
     assign write_register = (ds_i_reg_dst) ? ds_i_addr_rd : d_o_addr_rt;
 
     register r (
