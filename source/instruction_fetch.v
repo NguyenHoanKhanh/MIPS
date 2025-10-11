@@ -16,8 +16,6 @@ module instruction_fetch (
     wire f_i_ack;
     wire f_i_last;
     reg f_o_syn;
-    reg [`PC_WIDTH - 1 : 0] cur_pc;
-    wire [`PC_WIDTH - 1 : 0] temp_pc;
     transmit t (
         .t_clk(f_clk), 
         .t_rst(f_rst), 
@@ -32,11 +30,9 @@ module instruction_fetch (
             f_o_pc <= {`PC_WIDTH{1'b0}};
             f_o_syn <= 1'b0;
             f_o_ce <= 1'b0;
-            cur_pc <= {`PC_WIDTH{1'b0}};
         end
         else begin
             if (f_i_ce) begin
-                // cur_pc <= ;
                 f_o_pc <= (f_i_change_pc) ? f_i_pc : f_o_pc + 4;
                 f_o_syn <= (f_i_last && f_i_ack) ? 1'b0 : 1'b1;
                 if (f_i_ack) begin
