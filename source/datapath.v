@@ -1,5 +1,7 @@
 `ifndef DATAPATH_V
 `define DATAPATH_V
+`include "./source/program_counter.v"
+`include "./source/imem.v"
 `include "./source/instruction_fetch.v"
 `include "./source/decoder_stage.v"
 `include "./source/execute_stage.v"
@@ -7,7 +9,7 @@
 
 module datapath (
     d_clk, d_rst, d_i_ce, d_i_RegDst, d_i_RegWrite, d_i_ALUSrc,
-    d_i_Branch, d_i_MemRead, d_i_MemWrite, d_i_MemtoReg, fs_es_o_pc,
+    d_i_Branch, d_i_MemRead, d_i_MemWrite, d_i_MemtoReg, pc_im_o_pc,
     write_back_data, ds_es_o_opcode
 );
     input d_clk, d_rst;
@@ -19,22 +21,44 @@ module datapath (
     input d_i_MemRead, d_i_MemWrite;
     input d_i_MemtoReg;
     output [`OPCODE_WIDTH - 1 : 0] ds_es_o_opcode;
-    output [`PC_WIDTH - 1 : 0] fs_es_o_pc;
+    output [`PC_WIDTH - 1 : 0] pc_im_o_pc;
     output [`DWIDTH - 1 : 0] write_back_data;
 
+    wire [`PC_WIDTH - 1 : 0] pc_im_o_pc;
+    wire pc_im_o_ce;
+
+    prog_counter pc (
+        .pc_clk(d_clk), 
+        .pc_rst(d_rst), 
+        .pc_i_ce(d_i_ce), 
+        .pc_i_change_pc(es_is_change_pc), 
+        .pc_i_pc(es_is_o_pc), 
+        .pc_o_pc(pc_im_o_pc), 
+        .pc_o_ce(pc_im_o_ce)
+    );
 
     wire [`IWIDTH - 1 : 0] fs_ds_o_instr;
     wire fs_ds_o_ce;
-    instruction_fetch is (
-        .f_clk(d_clk), 
-        .f_rst(d_rst), 
-        .f_i_ce(d_i_ce),
-        .f_i_change_pc(es_is_change_pc),
-        .f_i_pc(es_is_o_pc),
-        .f_o_instr(fs_ds_o_instr), 
-        .f_o_pc(fs_es_o_pc), 
-        .f_o_ce(fs_ds_o_ce)
+    imem i_m (
+        .im_clk(d_clk), 
+        .im_rst(d_rst), 
+        .im_i_ce(pc_im_o_ce), 
+        .im_i_address(pc_im_o_pc), 
+        .im_o_instr(fs_ds_o_instr), 
+        .im_o_ce(fs_ds_o_ce)
     );
+
+    
+    // instruction_fetch is (
+    //     .f_clk(d_clk), 
+    //     .f_rst(d_rst), 
+    //     .f_i_ce(d_i_ce),
+    //     .f_i_change_pc(es_is_change_pc),
+    //     .f_i_pc(es_is_o_pc),
+    //     .f_o_instr(fs_ds_o_instr), 
+    //     .f_o_pc(fs_es_o_pc), 
+    //     .f_o_ce(fs_ds_o_ce)
+    // );
 
     wire ds_es_o_ce;
     wire [`FUNCT_WIDTH - 1 : 0] ds_es_o_funct;
@@ -67,7 +91,7 @@ module datapath (
         .es_i_ce(ds_es_o_ce), 
         .es_i_alu_src(d_i_ALUSrc), 
         .es_i_branch(d_i_Branch),
-        .es_i_pc(fs_es_o_pc),
+        .es_i_pc(pc_im_o_pc),
         .es_i_imm(ds_es_o_imm), 
         .es_i_alu_op(ds_es_o_opcode), 
         .es_i_alu_funct(ds_es_o_funct),

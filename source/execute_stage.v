@@ -36,7 +36,6 @@ module execute (
     // instantiate combinational ALU
     wire [`DWIDTH - 1 : 0] alu_value;
     wire [`PC_WIDTH - 1 : 0] alu_pc;
-    wire done;
     wire change_pc;
     alu a (
         .a_i_data_rs(es_i_data_rs), 

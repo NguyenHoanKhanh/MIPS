@@ -24,7 +24,7 @@ module processor (
         .d_i_MemRead(c_d_o_MemRead), 
         .d_i_MemWrite(c_d_o_MemWrite), 
         .d_i_MemtoReg(c_d_o_MemtoReg), 
-        .fs_es_o_pc(p_o_pc),
+        .pc_im_o_pc(p_o_pc),
         .write_back_data(p_wb_data), 
         .ds_es_o_opcode(d_c_o_opcode)
     );

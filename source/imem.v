@@ -1,0 +1,41 @@
+`ifndef IMEM_V
+`define IMEM_V
+`include "./source/header.vh"
+module imem (
+    im_clk, im_rst, im_i_ce, im_i_address, im_o_instr, im_o_ce
+);
+    input im_clk, im_rst;
+    input im_i_ce;
+    input [`PC_WIDTH - 1 : 0] im_i_address;
+    output reg [`IWIDTH - 1 : 0] im_o_instr;
+    output reg im_o_ce;
+
+    reg temp_o_ce;
+    reg [`PC_WIDTH - 1 : 0] temp_address;
+    reg [`IWIDTH - 1 : 0] mem_instr [`DEPTH - 1 : 0];
+
+    always @(posedge im_clk, negedge im_rst) begin
+        if (!im_rst) begin
+            $readmemh("./source/instr.txt", mem_instr, 0, `DEPTH - 1);
+            temp_address <= {`PC_WIDTH{1'b0}};
+            temp_o_ce <= 1'b0;
+            im_o_ce <= 1'b0;
+            im_o_instr <= {`IWIDTH{1'b0}};
+        end
+        else begin
+            if (im_i_ce) begin
+                im_o_instr <= mem_instr[temp_address[`PC_WIDTH - 1 : 2]];
+                im_o_ce <= 1'b1;
+                temp_address <= im_i_address;
+            end
+            else begin
+                im_o_ce <= 1'b0;
+                temp_address <= {`PC_WIDTH{1'b0}};
+            end
+        end
+    end
+    // assign im_o_ce = temp_o_ce;
+    // assign im_o_instr = mem_instr[temp_address[`PC_WIDTH - 1 : 2]];
+endmodule
+
+`endif 
