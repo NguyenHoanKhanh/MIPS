@@ -7,10 +7,10 @@ module alucontrol (
 );
     input [`OPCODE_WIDTH - 1 : 0] ac_i_opcode;
     input [`FUNCT_WIDTH - 1 : 0] ac_i_funct;
-    output reg [4 : 0] ac_o_control;
+    output reg [`ALU_CONTROL - 1 : 0] ac_o_control;
 
     always @(*) begin
-        ac_o_control = 5'd0;
+        ac_o_control = {`ALU_CONTROL{1'b0}};
         if (ac_i_opcode == `RTYPE) begin
             case (ac_i_funct)
                 `ADD:  ac_o_control = 5'd0;

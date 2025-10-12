@@ -11,32 +11,26 @@ module prog_counter (
     output reg [`PC_WIDTH - 1 : 0] pc_o_pc;
     output reg pc_o_ce;
     reg [`PC_WIDTH - 1 : 0] temp_pc;
-    // reg temp_o_ce;
 
     always @(posedge pc_clk or negedge pc_rst) begin
         if (!pc_rst) begin
             pc_o_pc <= {`PC_WIDTH{1'b0}};
             pc_o_ce <= 1'b0;
             temp_pc <= {`PC_WIDTH{1'b0}};
-            // temp_o_ce <= 1'b0;
         end
         else begin
             if (pc_i_ce) begin
                 pc_o_pc <= temp_pc;
-                // pc_o_ce <= temp_o_ce;
                 pc_o_ce <= 1'b1;
                 if (pc_i_change_pc) begin
-                    // temp_o_ce <= 1'b1;
                     temp_pc <= pc_i_pc;
                 end
                 else begin
-                    // temp_o_ce <= 1'b1;
+                    pc_o_ce <= 1'b0;
                     temp_pc <= temp_pc + 4;
                 end
             end
         end
     end
-
-    // assign pc_o_ce = (pc_o_pc == 0) ? 1'b1 : pc_o_ce;
 endmodule
 `endif 

@@ -17,8 +17,6 @@ module imem (
     always @(posedge im_clk, negedge im_rst) begin
         if (!im_rst) begin
             $readmemh("./source/instr.txt", mem_instr, 0, `DEPTH - 1);
-            // temp_address <= {`PC_WIDTH{1'b0}};
-            // temp_o_ce <= 1'b0;
             im_o_ce <= 1'b0;
             im_o_instr <= {`IWIDTH{1'b0}};
         end
@@ -26,12 +24,10 @@ module imem (
             if (im_i_ce) begin
                 im_o_instr <= mem_instr[im_i_address[`PC_WIDTH - 1 : 2]];
                 im_o_ce <= 1'b1;
-                // temp_address <= im_i_address;
             end
             else begin
                 im_o_ce <= 1'b0;
                 im_o_instr <= {`IWIDTH{1'b0}};
-                // temp_address <= {`PC_WIDTH{1'b0}};
             end
         end
     end

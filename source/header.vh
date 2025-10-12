@@ -36,3 +36,4 @@
 `define AWIDTH_MEM 32
 `define IMM_WIDTH 16
 `define DEPTH 2
+`define ALU_CONTROL 5

@@ -2,7 +2,6 @@
 `define DATAPATH_V
 `include "./source/program_counter.v"
 `include "./source/imem.v"
-`include "./source/instruction_fetch.v"
 `include "./source/decoder_stage.v"
 `include "./source/execute_stage.v"
 `include "./source/memory.v"
@@ -47,18 +46,6 @@ module datapath (
         .im_o_instr(fs_ds_o_instr), 
         .im_o_ce(fs_ds_o_ce)
     );
-
-    
-    // instruction_fetch is (
-    //     .f_clk(d_clk), 
-    //     .f_rst(d_rst), 
-    //     .f_i_ce(d_i_ce),
-    //     .f_i_change_pc(es_is_change_pc),
-    //     .f_i_pc(es_is_o_pc),
-    //     .f_o_instr(fs_ds_o_instr), 
-    //     .f_o_pc(fs_es_o_pc), 
-    //     .f_o_ce(fs_ds_o_ce)
-    // );
 
     wire ds_es_o_ce;
     wire [`FUNCT_WIDTH - 1 : 0] ds_es_o_funct;
