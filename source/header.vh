@@ -35,4 +35,4 @@
 `define PC_WIDTH 32
 `define AWIDTH_MEM 32
 `define IMM_WIDTH 16
-`define DEPTH 5
+`define DEPTH 2
