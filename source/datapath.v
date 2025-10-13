@@ -25,7 +25,6 @@ module datapath (
 
     wire [`PC_WIDTH - 1 : 0] pc_im_o_pc;
     wire pc_im_o_ce;
-
     prog_counter pc (
         .pc_clk(d_clk), 
         .pc_rst(d_rst), 

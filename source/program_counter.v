@@ -26,7 +26,6 @@ module prog_counter (
                     temp_pc <= pc_i_pc;
                 end
                 else begin
-                    pc_o_ce <= 1'b0;
                     temp_pc <= temp_pc + 4;
                 end
             end
